@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>進階及常用拉丁文法律詞匯大全 (含語音與固定拉丁文欄)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            margin: 30px; 
+            color: #333; 
+            background-color: #fcfcfc; 
+        }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 30px; font-size: 28px; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #34495e; padding-bottom: 8px; margin-top: 40px; font-size: 20px; }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            position: relative;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background: #fff;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 700px;
+        }
+        th, td { 
+            border: 1px solid #e0e0e0; 
+            padding: 12px 15px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #f4f6f7; 
+            color: #2c3e50; 
+            font-weight: bold; 
+            width: 25%; 
+            white-space: nowrap;
+        }
+        tr:nth-child(even) { 
+            background-color: #fcfdfe; 
+        }
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* 固定第一欄（拉丁文詞匯） */
+        th:first-child, td.latin-cell {
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+            width: 25%;
+        }
+        tr:nth-child(even) td.latin-cell {
+            background-color: #fcfdfe;
+        }
+        tr:hover td.latin-cell {
+            background-color: #f1f5f9;
+        }
+        th:first-child {
+            background-color: #f4f6f9 !important;
+            z-index: 3;
+        }
+
+        .latin-term { 
+            font-weight: bold; 
+            color: #16a085; 
+            font-style: italic; 
+        }
+        
+        /* 可發音單元格樣式 */
+        .speakable {
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.2s ease;
+            border-radius: 4px;
+        }
+        .speakable:hover {
+            background-color: #e2e8f0;
+        }
+        .speakable::after {
+            content: " 🔊";
+            font-size: 0.8rem;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        .speakable:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>進階及常用拉丁文法律詞匯大全</h1>
+
+    <!-- 1. 關於訴訟程序與權限 -->
+    <h2>1. 關於訴訟程序與權限 (Procedural & Jurisdictional)</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>拉丁文詞匯</th>
+                    <th>英文對應 / 原意</th>
+                    <th>中文法律解讀</th>
+                    <th>應用範例 / 說明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Habeas corpus', 'la')"><span class="latin-term">Habeas corpus</span></td>
+                    <td>You shall have the body</td>
+                    <td><strong>人身保護令</strong></td>
+                    <td>要求法庭審查監禁是否合法的權利。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Injunction', 'la')"><span class="latin-term">Injunction</span></td>
+                    <td>To command</td>
+                    <td><strong>禁制令</strong></td>
+                    <td>法院要求某人做或不做某事的命令。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Subpoena', 'la')"><span class="latin-term">Subpoena</span></td>
+                    <td>Under penalty</td>
+                    <td><strong>傳票 / 傳喚令</strong></td>
+                    <td>強制證人出庭或提交證據，否則受罰。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Sub judice', 'la')"><span class="latin-term">Sub judice</span></td>
+                    <td>Under a judge</td>
+                    <td><strong>審判中</strong></td>
+                    <td>案件正受審理，公眾通常不可公開評論。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('In camera', 'la')"><span class="latin-term">In camera</span></td>
+                    <td>In a chamber</td>
+                    <td><strong>不公開審理</strong></td>
+                    <td>審判不對公眾和媒體開放。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Inter alia', 'la')"><span class="latin-term">Inter alia</span></td>
+                    <td>Among other things</td>
+                    <td><strong>其中包括 / 諸如</strong></td>
+                    <td>用於列舉時，表示這只是其中一部分例子。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Amicus curiae', 'la')"><span class="latin-term">Amicus curiae</span></td>
+                    <td>Friend of the court</td>
+                    <td><strong>法庭之友</strong></td>
+                    <td>非訴訟當事人，但因具專業知識而獲准向法庭提供意見。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Certiorari', 'la')"><span class="latin-term">Certiorari</span></td>
+                    <td>To be more fully informed</td>
+                    <td><strong>調卷令 / 移送審查命令</strong></td>
+                    <td>上級法院命令下級法院將案卷移送審查。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('In re', 'la')"><span class="latin-term">In re</span></td>
+                    <td>In the matter of</td>
+                    <td><strong>關於……之事</strong></td>
+                    <td>用於非對抗性訴訟或破產、遺產等案件的標題。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Ex parte', 'la')"><span class="latin-term">Ex parte</span></td>
+                    <td>From one party</td>
+                    <td><strong>單方申請 / 片面</strong></td>
+                    <td>只有訴訟一方參與，另一方不在場的法律程序。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Mutatis mutandis', 'la')"><span class="latin-term">Mutatis mutandis</span></td>
+                    <td>With things changed that should be changed</td>
+                    <td><strong>加以必要的變更後</strong></td>
+                    <td>指條文比照適用，但需根據新情境做適當調整。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 2. 關於法律原則與權利 -->
+    <h2>2. 關於法律原則與權利 (Legal Principles & Rights)</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>拉丁文詞匯</th>
+                    <th>英文對應 / 原意</th>
+                    <th>中文法律解讀</th>
+                    <th>應用範例 / 說明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Stare decisis', 'la')"><span class="latin-term">Stare decisis</span></td>
+                    <td>To stand by things decided</td>
+                    <td><strong>遵循先例原則</strong></td>
+                    <td>法院在判決時，必須遵循先前判例的原則。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Res judicata', 'la')"><span class="latin-term">Res judicata</span></td>
+                    <td>A matter judged</td>
+                    <td><strong>一事不再理</strong></td>
+                    <td>已經過法庭終審的案件，不得重新起訴。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Prima facie', 'la')"><span class="latin-term">Prima facie</span></td>
+                    <td>At first face</td>
+                    <td><strong>初步證據 / 表面證供</strong></td>
+                    <td>表面上看來證據確鑿，除非有相反證據推翻。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('De jure', 'la')"><span class="latin-term">De jure</span></td>
+                    <td>By law</td>
+                    <td><strong>法律上（的事實）</strong></td>
+                    <td>根據法律明文規定而存在的狀態（對比 De facto）。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('De facto', 'la')"><span class="latin-term">De facto</span></td>
+                    <td>In fact</td>
+                    <td><strong>事實上（的事實）</strong></td>
+                    <td>雖然法律沒規定，但現實中已成事實的狀態。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Pro bono', 'la')"><span class="latin-term">Pro bono</span></td>
+                    <td>For the public good</td>
+                    <td><strong>公益服務 / 免費援助</strong></td>
+                    <td>律師不收費為公眾或弱勢群體提供法律服務。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Ipso facto', 'la')"><span class="latin-term">Ipso facto</span></td>
+                    <td>By the fact itself</td>
+                    <td><strong>依事實本身 / 理所當然</strong></td>
+                    <td>指某個事實一經發生，即自動產生某種法律後果。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Ab initio', 'la')"><span class="latin-term">Ab initio</span></td>
+                    <td>From the beginning</td>
+                    <td><strong>自始 / 從一開始</strong></td>
+                    <td>例如「合約自始無效」（Void ab initio）。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Ubi jus ibi remedium', 'la')"><span class="latin-term">Ubi jus ibi remedium</span></td>
+                    <td>Where there is a right, there is a remedy</td>
+                    <td><strong>有權利必有救濟</strong></td>
+                    <td>法律賦予個人權利時，必會提供受侵害時的救濟手段。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('De minimis', 'la')"><span class="latin-term">De minimis</span></td>
+                    <td>Concerning the minimal</td>
+                    <td><strong>微不足道之事</strong></td>
+                    <td>法律不理會極其輕微、無足輕重的小事。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 3. 關於民事、契約與責任 -->
+    <h2>3. 關於民事、契約與責任 (Civil, Contracts & Liability)</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>拉丁文詞匯</th>
+                    <th>英文對應 / 原意</th>
+                    <th>中文法律解讀</th>
+                    <th>應用範例 / 說明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Bona fide', 'la')"><span class="latin-term">Bona fide</span></td>
+                    <td>In good faith</td>
+                    <td><strong>善意 / 真誠</strong></td>
+                    <td>主觀上出於誠實、無欺詐意圖（如：善意第三人）。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Mala fide', 'la')"><span class="latin-term">Mala fide</span></td>
+                    <td>In bad faith</td>
+                    <td><strong>惡意</strong></td>
+                    <td>帶有欺詐或不良意圖的行為。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Caveat emptor', 'la')"><span class="latin-term">Caveat emptor</span></td>
+                    <td>Let the buyer beware</td>
+                    <td><strong>買主自慎</strong></td>
+                    <td>買方在購買前有責任自行檢查貨物品質。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Quid pro quo', 'la')"><span class="latin-term">Quid pro quo</span></td>
+                    <td>Something for something</td>
+                    <td><strong>對價 / 利益交換</strong></td>
+                    <td>契約中雙方互相給予的利益或承諾。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Force majeure', 'la')"><span class="latin-term">Force majeure</span></td>
+                    <td>Superior force</td>
+                    <td><strong>不可抗力</strong></td>
+                    <td>因天災、戰爭等無法控制的事件，導致合約無法履行。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Pacta sunt servanda', 'la')"><span class="latin-term">Pacta sunt servanda</span></td>
+                    <td>Agreements must be kept</td>
+                    <td><strong>條約/合約必須遵守</strong></td>
+                    <td>國際法與契約法的核心原則，雙方必須履行義務。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Consensus ad idem', 'la')"><span class="latin-term">Consensus ad idem</span></td>
+                    <td>Agreement to the same thing</td>
+                    <td><strong>意思表示一致</strong></td>
+                    <td>合約成立的核心，雙方對合約主要內容達成共識。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Quantum meruit', 'la')"><span class="latin-term">Quantum meruit</span></td>
+                    <td>As much as he has deserved</td>
+                    <td><strong>計勞給酬 / 酌給勞務報酬</strong></td>
+                    <td>合約未明定價格時，依實際工作量支付合理報酬。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 4. 關於刑法與犯罪 -->
+    <h2>4. 關於刑法與犯罪 (Criminal Law)</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>拉丁文詞匯</th>
+                    <th>英文對應 / 原意</th>
+                    <th>中文法律解讀</th>
+                    <th>應用範例 / 說明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Actus reus', 'la')"><span class="latin-term">Actus reus</span></td>
+                    <td>Guilty act</td>
+                    <td><strong>犯罪行為</strong></td>
+                    <td>構成犯罪所必需的客觀外部行為。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Mens rea', 'la')"><span class="latin-term">Mens rea</span></td>
+                    <td>Guilty mind</td>
+                    <td><strong>犯罪意圖</strong></td>
+                    <td>構成犯罪所必需的主觀心理狀態（故意或蓄意）。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Corpus delicti', 'la')"><span class="latin-term">Corpus delicti</span></td>
+                    <td>Body of the crime</td>
+                    <td><strong>犯罪事實 / 罪證</strong></td>
+                    <td>證明犯罪確實發生過的核心證據（如謀殺案中的屍體）。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Doli incapax', 'la')"><span class="latin-term">Doli incapax</span></td>
+                    <td>Incapable of deceit</td>
+                    <td><strong>無刑事責任能力</strong></td>
+                    <td>因年齡太小（通常指幼童）在法律上被推定無法犯罪。</td>
+                </tr>
+                <tr>
+                    <td class="latin-cell speakable" onclick="speak('Animus furandi', 'la')"><span class="latin-term">Animus furandi</span></td>
+                    <td>Intention to steal</td>
+                    <td><strong>偷竊意圖</strong></td>
+                    <td>盜竊罪中必須具備的主觀意圖。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // 播放點擊音效 (Web Audio API)
+        function playClickSound() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.05);
+
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc.start();
+                osc.stop(ctx.currentTime + 0.05);
+            } catch (e) {
+                console.log("Audio not supported", e);
+            }
+        }
+
+        // 播放語音朗讀 (Web Speech API)
+        function speak(text, lang) {
+            playClickSound();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                // 拉丁文在多數瀏覽器中會以近似的語音（如義大利文或英文）發音
+                utterance.lang = lang;
+                utterance.rate = 0.85; // 稍微放慢，利於學習法律詞彙
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("您的瀏覽器不支援語音播放功能。");
+            }
+        }
+    </script>
+
+</body>
+</html>
