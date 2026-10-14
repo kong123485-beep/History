@@ -36,7 +36,7 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);font-
 <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
 
 
-<input id="q" class="search" placeholder="搜尋：例如 Cold War, 法國, 德川...">
+<input id="q" class="search" placeholder="搜尋：例如 Cold War, 法國, 德川, 拉丁文...">
 </div>
 </header>
 
@@ -44,6 +44,7 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);font-
 <div class="section"><h2>🌍 世界大戰與冷戰 / World Wars &amp; Cold War</h2><p>一次 vs 二次大戰爆發、美國冷戰對比</p><div class="grid" id="g2"><div class="card"><span class="badge">3 days ago</span><h3>冷戰對比：美國視角</h3><div class="en">Cold-War-Usa-Vs.html</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/Cold-War-Usa-Vs.html" target="_blank" style="width:100%">開啟文件 →</a></div></div><div class="card"><span class="badge">3 days ago</span><h3>大戰爆發：一次 vs 二次</h3><div class="en">Outbreak-Wwi-Vs-Wwii.html</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/Outbreak-Wwi-Vs-Wwii.html" target="_blank" style="width:100%">開啟文件 →</a></div></div></div></div>
 <div class="section"><h2>⛩️ 幕末德川 / Bakumatsu - Fall of Tokugawa</h2><p>賴肖爾觀點與原稿校正版對比</p><div class="grid" id="g3"><div class="card"><span class="badge">3 days ago</span><h3>德川幕府滅亡 - 原稿校正版</h3><div class="en">Tokugawa-Fall-Original-Corrected.html</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/Tokugawa-Fall-Original-Corrected.html" target="_blank" style="width:100%">開啟文件 →</a></div></div><div class="card"><span class="badge">3 days ago</span><h3>德川滅亡 - 賴肖爾觀點</h3><div class="en">Tokugawa-Fall-Reischauer.html</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/Tokugawa-Fall-Reischauer.html" target="_blank" style="width:100%">開啟文件 →</a></div></div></div></div>
 <div class="section"><h2>📜 政策文件 / Policy Address</h2><p>施政報告雙語對照檔案</p><div class="grid" id="g4"><div class="card"><span class="badge">yesterday</span><h3>2026 施政報告（雙語）</h3><div class="en">Policy-Address-2026-Bilingual.html</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/Policy-Address-2026-Bilingual.html" target="_blank" style="width:100%">開啟文件 →</a></div></div><div class="card"><span class="badge">yesterday</span><h3>施政報告（雙語）</h3><div class="en">Policy-Address-Bilingual.html</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/Policy-Address-Bilingual.html" target="_blank" style="width:100%">開啟文件 →</a></div></div></div></div>
+<div class="section"><h2>⚖️ 法律與歷史文獻 / Legal &amp; Historical Terms</h2><p>進階及常用拉丁文法律詞匯大全</p><div class="grid" id="g5"><div class="card"><span class="badge">new</span><h3>進階及常用拉丁文法律詞匯大全</h3><div class="en">extended_latin_legal_terms.html</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/extended_latin_legal_terms.html" target="_blank" style="width:100%">開啟文件 →</a></div></div></div></div>
 
 <footer>
 <div>Source Directory: <a href="https://github.com/kong123485-beep/History" style="color:inherit">github.com/kong123485-beep/History</a> • Branch: main • Deploy: github-pages</div>
@@ -61,13 +62,18 @@ const files=[
 {n:"Tokugawa-Fall-Original-Corrected.html",zh:"德川幕府滅亡 - 原稿校正版",en:"Tokugawa Fall Original Corrected",cat:"g3",time:"3 days ago"},
 {n:"Tokugawa-Fall-Reischauer.html",zh:"德川滅亡 - 賴肖爾觀點",en:"Tokugawa Fall Reischauer",cat:"g3",time:"3 days ago"},
 {n:"Unification-Italy-Vs-Germany.html",zh:"統一對比：意大利 vs 德國",en:"Unification Italy Vs Germany",cat:"g1",time:"3 days ago"},
+{n:"extended_latin_legal_terms.html",zh:"進階及常用拉丁文法律詞匯大全",en:"Extended Latin Legal Terms",cat:"g5",time:"new"}
 ];
 function render(list){
- ["g1","g2","g3","g4"].forEach(id=>document.getElementById(id).innerHTML="");
+ ["g1","g2","g3","g4","g5"].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.innerHTML="";
+  });
  list.forEach(f=>{
   const el=document.createElement("div"); el.className="card";
   el.innerHTML=`<span class="badge">${f.time}</span><h3>${f.zh}</h3><div class="en">${f.n}</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/${f.n}" target="_blank" style="width:100%">開啟文件 →</a></div>`;
-  document.getElementById(f.cat).appendChild(el);
+  const container = document.getElementById(f.cat);
+  if(container) container.appendChild(el);
  });
 }
 render(files);
