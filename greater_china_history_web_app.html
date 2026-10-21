@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>港澳台歷史印記 | 港澳台歷史互動探索平台</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sepia: {
+                            50: '#fbf9f4',
+                            100: '#f6f1e7',
+                            200: '#ebdcc5',
+                            800: '#5c4a38',
+                            900: '#382d21',
+                        },
+                        crimson: {
+                            800: '#8b0000',
+                            900: '#580000',
+                        },
+                        jade: {
+                            700: '#1e5631',
+                            800: '#143d21',
+                        },
+                        navy: {
+                            800: '#1b2a4a',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif TC', 'Georgia', 'serif'],
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fbf9f4;
+            color: #2c2520;
+        }
+        .font-serif-tc {
+            font-family: 'Noto Serif TC', serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6f1e7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5b299;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b0000;
+        }
+        .tab-active {
+            border-bottom: 3px solid #8b0000;
+            color: #8b0000;
+            font-weight: bold;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #cbd5e1;
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-crimson-800 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-sepia-100/95 backdrop-blur shadow-md border-b border-sepia-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('overview')">
+                    <div class="p-2.5 bg-crimson-800 text-amber-100 rounded-lg shadow-inner">
+                        <i data-lucide="landmark" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-bold font-serif-tc text-sepia-900 tracking-wide">港澳台歷史印記</h1>
+                        <p class="text-xs text-sepia-800 font-serif-tc hidden sm:block">香港、澳門與台灣歷史互動探索平台</p>
+                    </div>
+                </div>
+
+                <!-- Global Search & Filters Nav -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="搜尋歷史事件、人物、年份..." 
+                               onkeyup="handleSearch()"
+                               class="w-64 pl-9 pr-4 py-1.5 text-sm bg-white border border-sepia-200 rounded-full focus:outline-none focus:ring-2 focus:ring-crimson-800/50 shadow-sm">
+                        <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-2.5"></i>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-md text-sepia-900 hover:bg-sepia-200">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Tab Navigation Links -->
+            <nav class="hidden md:flex space-x-8 border-t border-sepia-200/60 pt-1 text-sm font-medium">
+                <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn py-3 px-1 border-b-2 border-transparent hover:text-crimson-800 transition-colors flex items-center gap-2 tab-active">
+                    <i data-lucide="git-compare" class="w-4 h-4"></i> 對比總覽
+                </button>
+                <button onclick="switchTab('hk')" id="tab-hk" class="tab-btn py-3 px-1 border-b-2 border-transparent hover:text-crimson-800 transition-colors flex items-center gap-2">
+                    <i data-lucide="building-2" class="w-4 h-4"></i> 香港歷史
+                </button>
+                <button onclick="switchTab('macau')" id="tab-macau" class="tab-btn py-3 px-1 border-b-2 border-transparent hover:text-crimson-800 transition-colors flex items-center gap-2">
+                    <i data-lucide="anchor" class="w-4 h-4"></i> 澳門歷史
+                </button>
+                <button onclick="switchTab('taiwan')" id="tab-taiwan" class="tab-btn py-3 px-1 border-b-2 border-transparent hover:text-crimson-800 transition-colors flex items-center gap-2">
+                    <i data-lucide="mountain" class="w-4 h-4"></i> 台灣歷史
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn py-3 px-1 border-b-2 border-transparent hover:text-crimson-800 transition-colors flex items-center gap-2 text-crimson-800 font-semibold ml-auto">
+                    <i data-lucide="award" class="w-4 h-4"></i> 歷史知識測驗
+                </button>
+            </nav>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-sepia-100 border-b border-sepia-200 px-4 pt-2 pb-4 space-y-2">
+            <div class="mb-3">
+                <input type="text" id="mobileSearchInput" placeholder="搜尋歷史事件..." onkeyup="handleSearch('mobile')"
+                       class="w-full pl-9 pr-4 py-2 text-sm bg-white border border-sepia-200 rounded-lg">
+            </div>
+            <button onclick="switchTab('overview')" class="block w-full text-left px-3 py-2 rounded-md hover:bg-sepia-200">對比總覽</button>
+            <button onclick="switchTab('hk')" class="block w-full text-left px-3 py-2 rounded-md hover:bg-sepia-200">香港歷史</button>
+            <button onclick="switchTab('macau')" class="block w-full text-left px-3 py-2 rounded-md hover:bg-sepia-200">澳門歷史</button>
+            <button onclick="switchTab('taiwan')" class="block w-full text-left px-3 py-2 rounded-md hover:bg-sepia-200">台灣歷史</button>
+            <button onclick="switchTab('quiz')" class="block w-full text-left px-3 py-2 rounded-md font-bold text-crimson-800 bg-amber-50 border border-amber-200">歷史知識測驗</button>
+        </div>
+    </header>
+
+    <!-- Global Search Results Container (Overlay Modal/Section) -->
+    <div id="searchResultsSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-sepia-200">
+            <div class="flex justify-between items-center mb-4 border-b pb-3">
+                <h2 class="text-xl font-bold font-serif-tc text-sepia-900 flex items-center gap-2">
+                    <i data-lucide="search-code" class="text-crimson-800"></i> 搜尋結果 <span id="searchCount" class="text-sm font-normal text-gray-500"></span>
+                </h2>
+                <button onclick="closeSearch()" class="text-gray-400 hover:text-gray-600">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="searchResultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Search Items Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Era Era Filter Toolbar (Applicable across views) -->
+        <div class="mb-8 bg-white/80 p-4 rounded-xl border border-sepia-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-2 text-sm font-medium text-sepia-900">
+                <i data-lucide="filter" class="w-4 h-4 text-crimson-800"></i>
+                <span>歷史時期篩選：</span>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs sm:text-sm" id="eraFilterBtns">
+                <button onclick="filterByEra('all')" class="era-filter-btn px-3 py-1.5 rounded-full bg-crimson-800 text-white font-medium transition" data-era="all">全部時期</button>
+                <button onclick="filterByEra('early')" class="era-filter-btn px-3 py-1.5 rounded-full bg-sepia-100 hover:bg-sepia-200 text-sepia-900 font-medium transition" data-era="early">遠古與早期開發</button>
+                <button onclick="filterByEra('ming-qing')" class="era-filter-btn px-3 py-1.5 rounded-full bg-sepia-100 hover:bg-sepia-200 text-sepia-900 font-medium transition" data-era="ming-qing">明清時期 (16-19世紀)</button>
+                <button onclick="filterByEra('colonial')" class="era-filter-btn px-3 py-1.5 rounded-full bg-sepia-100 hover:bg-sepia-200 text-sepia-900 font-medium transition" data-era="colonial">殖民與日治時期</button>
+                <button onclick="filterByEra('postwar')" class="era-filter-btn px-3 py-1.5 rounded-full bg-sepia-100 hover:bg-sepia-200 text-sepia-900 font-medium transition" data-era="postwar">戰後發展與現代轉型</button>
+            </div>
+        </div>
+
+        <!-- SECTION 1: OVERVIEW / TIMELINE COMPARISON -->
+        <section id="section-overview" class="content-section space-y-8">
+            <!-- Hero Banner -->
+            <div class="relative bg-gradient-to-r from-navy-900 via-sepia-900 to-crimson-900 rounded-2xl p-8 sm:p-12 text-white shadow-xl overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-300 text-xs font-semibold rounded-full mb-3 border border-amber-400/30">東亞樞紐與歷史交會</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-serif-tc tracking-tight mb-4">港澳台三地歷史平行對比</h2>
+                    <p class="text-sepia-100 text-sm sm:text-base leading-relaxed">
+                        香港、澳門與台灣地理相近，但在過去數百年經歷了截然不同的歷史軌跡。從大航海時代的西方接觸、清朝與殖民割讓，到現代轉型與回歸／民主化過程，一同探索這三座樞紐島嶼與半島的滄桑巨變。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Side-by-Side Timeline Matrix -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-sepia-200">
+                <h3 class="text-xl font-bold font-serif-tc text-sepia-900 mb-6 flex items-center gap-2">
+                    <i data-lucide="layers" class="text-crimson-800"></i> 三地歷史時代對照表
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- HK Timeline Box -->
+                    <div class="border border-red-200 bg-red-50/30 rounded-xl p-5 hover:shadow-md transition">
+                        <div class="flex items-center gap-2 text-crimson-800 font-bold font-serif-tc text-lg mb-4 pb-2 border-b border-red-200">
+                            <i data-lucide="building-2"></i> 香港 (Hong Kong)
+                        </div>
+                        <ul class="space-y-4 text-sm" id="overview-hk-list">
+                            <!-- Injected by JS -->
+                        </ul>
+                    </div>
+
+                    <!-- Macau Timeline Box -->
+                    <div class="border border-emerald-200 bg-emerald-50/30 rounded-xl p-5 hover:shadow-md transition">
+                        <div class="flex items-center gap-2 text-jade-700 font-bold font-serif-tc text-lg mb-4 pb-2 border-b border-emerald-200">
+                            <i data-lucide="anchor"></i> 澳門 (Macau)
+                        </div>
+                        <ul class="space-y-4 text-sm" id="overview-macau-list">
+                            <!-- Injected by JS -->
+                        </ul>
+                    </div>
+
+                    <!-- Taiwan Timeline Box -->
+                    <div class="border border-blue-200 bg-blue-50/30 rounded-xl p-5 hover:shadow-md transition">
+                        <div class="flex items-center gap-2 text-navy-800 font-bold font-serif-tc text-lg mb-4 pb-2 border-b border-blue-200">
+                            <i data-lucide="mountain"></i> 台灣 (Taiwan)
+                        </div>
+                        <ul class="space-y-4 text-sm" id="overview-taiwan-list">
+                            <!-- Injected by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: HONG KONG HISTORY -->
+        <section id="section-hk" class="content-section hidden space-y-8">
+            <div class="bg-gradient-to-r from-red-900 to-amber-900 text-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold font-serif-tc mb-2 flex items-center gap-3">
+                    <i data-lucide="building-2"></i> 香港歷史脈絡 (Hong Kong)
+                </h2>
+                <p class="text-red-100 text-sm sm:text-base">從漁村聚落、英國殖民貿易港、三年零八個月日佔期，到東方之珠經濟飛躍與1997年主權移交。</p>
+            </div>
+
+            <!-- Detailed Timeline Cards -->
+            <div class="relative space-y-6" id="hk-detail-container">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: MACAU HISTORY -->
+        <section id="section-macau" class="content-section hidden space-y-8">
+            <div class="bg-gradient-to-r from-emerald-900 to-teal-900 text-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold font-serif-tc mb-2 flex items-center gap-3">
+                    <i data-lucide="anchor"></i> 澳門歷史脈絡 (Macau)
+                </h2>
+                <p class="text-emerald-100 text-sm sm:text-base">東西方文化最早交會的璀璨據點：葡人租居、貿易轉口港、博彩業興起至1999年主權移交。</p>
+            </div>
+
+            <div class="relative space-y-6" id="macau-detail-container">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- SECTION 4: TAIWAN HISTORY -->
+        <section id="section-taiwan" class="content-section hidden space-y-8">
+            <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold font-serif-tc mb-2 flex items-center gap-3">
+                    <i data-lucide="mountain"></i> 台灣歷史脈絡 (Taiwan)
+                </h2>
+                <p class="text-blue-100 text-sm sm:text-base">原住民族聚居、大航海荷西時期、明鄭王朝、清領時期、五十載日治時期、戰後國民政府與民主化進程。</p>
+            </div>
+
+            <div class="relative space-y-6" id="taiwan-detail-container">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- SECTION 5: INTERACTIVE QUIZ -->
+        <section id="section-quiz" class="content-section hidden space-y-8">
+            <div class="bg-white p-6 sm:p-10 rounded-2xl border border-sepia-200 shadow-md max-w-3xl mx-auto">
+                <div class="text-center mb-8">
+                    <span class="p-3 bg-amber-100 text-crimson-800 rounded-full inline-block mb-3">
+                        <i data-lucide="help-circle" class="w-8 h-8"></i>
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-serif-tc text-sepia-900">港澳台歷史知識大挑戰</h2>
+                    <p class="text-gray-600 text-sm mt-2">測試你對香港、澳門與台灣歷史發展與關鍵事件的瞭解程度！</p>
+                </div>
+
+                <!-- Quiz Progress Bar -->
+                <div class="w-full bg-sepia-100 rounded-full h-2.5 mb-6 overflow-hidden">
+                    <div id="quiz-progress" class="bg-crimson-800 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <!-- Quiz Container -->
+                <div id="quiz-card" class="space-y-6">
+                    <!-- Dynamic Question Content -->
+                </div>
+
+                <!-- Quiz Result (Hidden initially) -->
+                <div id="quiz-result" class="hidden text-center space-y-6 py-6">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-amber-100 rounded-full text-crimson-800 text-3xl font-bold" id="score-badge">
+                        80%
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold font-serif-tc text-sepia-900" id="quiz-score-text">挑戰完成！</h3>
+                        <p class="text-gray-600 mt-2 text-sm sm:text-base" id="quiz-feedback-text">你對港澳台三地歷史有相當不錯的認知！</p>
+                    </div>
+                    <button onclick="resetQuiz()" class="px-6 py-3 bg-crimson-800 text-white rounded-xl font-medium hover:bg-crimson-900 transition flex items-center justify-center gap-2 mx-auto">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> 重新測驗
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Detail Event Modal -->
+    <div id="eventModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative border border-sepia-200 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-sepia-100">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="modalContent">
+                <!-- Injected JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-sepia-900 text-sepia-200 py-8 border-t border-sepia-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm space-y-3">
+            <div class="flex justify-center items-center gap-2 font-serif-tc font-semibold text-amber-200 text-lg">
+                <i data-lucide="landmark" class="w-5 h-5"></i> 港澳台歷史印記
+            </div>
+            <p class="text-sepia-200 max-w-xl mx-auto text-xs sm:text-sm">
+                本平台旨在提供清晰客觀的香港、澳門與台灣歷史知識比較與學習，促進東亞文化與歷史脈絡之瞭解。
+            </p>
+            <p class="text-xs text-sepia-200/80">© 2026 港澳台歷史互動探索平台 | Interactive Educational Platform</p>
+        </div>
+    </footer>
+
+    <!-- History Data & App Script -->
+    <script>
+        // Data Structure for Historical Events
+        const historyData = [
+            // --- Hong Kong ---
+            {
+                id: 'hk-1',
+                region: 'hk',
+                era: 'early',
+                title: '古漢唐宋時期與漁鹽農業',
+                year: '秦漢 - 明初',
+                displayYear: '前214年 - 1368年',
+                summary: '香港地區早在新石器時代即有人類活動，秦漢時期納入嶺南郡縣，以採珠與鹽業聞名。',
+                content: '香港屯門早在唐代即為重要海防重鎮與外航船舶停泊點（屯門軍鎮）。宋末崖山海戰期間，宋帝趙昺等曾流亡至香港九龍（官富場），留有宋王臺等歷史遺跡。當時居民多以漁業、採珠與製鹽為生。',
+                tag: '早期歷史',
+                keyFigures: '宋帝昺、陸秀夫'
+            },
+            {
+                id: 'hk-2',
+                region: 'hk',
+                era: 'ming-qing',
+                title: '新安縣建立與遷界令影響',
+                year: '1573 - 1839',
+                displayYear: '1573年 - 1839年',
+                summary: '明代設新安縣管轄香港地區，清初因防範鄭成功施行「遷界令」，對當地經濟造成重大重創。',
+                content: '明萬曆元年（1573年）劃出新安縣，轄區包括今香港與深圳。清順治至康熙年間，為斷絕台灣鄭成功部隊之供給，實施「遷界令」，強迫沿海居民內遷50里，香港一帶村落幾乎夷為廢墟，直至復界後客家人陸續遷入才逐漸復甦。',
+                tag: '明清時期',
+                keyFigures: '康熙帝、鄧符協'
+            },
+            {
+                id: 'hk-3',
+                region: 'hk',
+                era: 'colonial',
+                title: '鴉片戰爭與割讓開埠',
+                year: '1841 - 1898',
+                displayYear: '1841年 - 1898年',
+                summary: '第一次鴉片戰爭後，清廷簽署《南京條約》割讓香港島，英軍開啟殖民統治。',
+                content: '1841年英軍登陸水坑口，1842年《南京條約》割讓香港島；1860年《北京條約》割讓九龍半島；1898年《展拓香港界址專條》租借新界99年。香港從自由港轉型為遠東重要貿易與金融樞紐。',
+                tag: '英國殖民',
+                keyFigures: '璞鼎查 (Henry Pottinger)、琦善'
+            },
+            {
+                id: 'hk-4',
+                region: 'hk',
+                era: 'colonial',
+                title: '日佔時期「三年零八個月」',
+                year: '1941 - 1945',
+                displayYear: '1941年12月 - 1945年8月',
+                summary: '二戰期間太平洋戰爭爆發，香港經歷了艱辛的日軍佔領時期。',
+                content: '1941年12月25日「黑色聖誕節」，港督楊慕琦向日軍投降。日佔時期實施嚴酷的軍管與配給制，人口急劇銳減，社會經濟遭受極大破壞，直到1945年日本戰敗投降，英國恢復對港統治。',
+                tag: '日佔時期',
+                keyFigures: '楊慕琦 (Mark Aitchison Young)、酒井隆'
+            },
+            {
+                id: 'hk-5',
+                region: 'hk',
+                era: 'postwar',
+                title: '戰後經濟飛躍與「東方之珠」',
+                year: '1950s - 1980s',
+                displayYear: '1950年代 - 1980年代',
+                summary: '大量的難民與資金湧入，推動香港由轉口港轉型為製造業中心與國際金融中心。',
+                content: '韓戰後國際禁運促使香港發展輕工業（紡織、塑膠、玩具），1970年代在港督麥理浩推行十年的房屋計劃、廉政公署（ICAC）及九年免費教育等改革下，香港迅速躍升為「亞洲四小龍」之一。',
+                tag: '戰後繁榮',
+                keyFigures: '麥理浩 (Murray)'
+            },
+            {
+                id: 'hk-6',
+                region: 'hk',
+                era: 'postwar',
+                title: '中英談判與1997年主權移交',
+                year: '1984 - 1997',
+                displayYear: '1984年 - 1997年',
+                summary: '簽署《中英聯合聲明》，香港於1997年7月1日回歸中國，設立特別行政區。',
+                content: '1984年《中英聯合聲明》確定香港前途。1997年7月1日，香港主權正式移交中華人民共和國，實施「一國兩制」、「港人治港」、高度自治，成立香港特別行政區。',
+                tag: '現代回歸',
+                keyFigures: '鄧小平、撒切爾夫人 (Margaret Thatcher)'
+            },
+
+            // --- Macau ---
+            {
+                id: 'mac-1',
+                region: 'macau',
+                era: 'early',
+                title: '漁村初開與媽閣廟興建',
+                year: '宋元 - 明初',
+                displayYear: '1279年 - 1488年',
+                summary: '南宋末年已有中原移民避難至澳門，居民多以捕魚為生，並建造媽閣廟。',
+                content: '澳門古稱濠鏡澳、蠔鏡。宋末避難者抵達澳門，1488年（明弘治年間）興建媽閣廟，後來葡萄牙人抵達時詢問地名，當地人回答「媽閣」，遂演變為葡文名稱「Macau」。',
+                tag: '早期歷史',
+                keyFigures: '閩粵漁民'
+            },
+            {
+                id: 'mac-2',
+                region: 'macau',
+                era: 'ming-qing',
+                title: '葡萄牙人租居與東方貿易樞紐',
+                year: '1553 - 1640',
+                displayYear: '1553年 - 1640年',
+                summary: '葡萄牙人獲准在澳門借地晾曬貨物並交納地租，澳門成為東西方遠洋貿易黃金樞紐。',
+                content: '1553年葡萄牙人進入澳門，1557年起向明朝政府繳納地租租居。澳門成為連接果阿、馬六甲、長崎（果阿-澳門-長崎航線）與馬尼拉的全球貿易轉口港，耶穌會傳教士（如利瑪竇）亦以此為門戶傳播西方科學與天主教。',
+                tag: '明清時期',
+                keyFigures: '利瑪竇 (Matteo Ricci)'
+            },
+            {
+                id: 'mac-3',
+                region: 'macau',
+                era: 'colonial',
+                title: '亞馬留改革與殖民地位確立',
+                year: '1849 - 1887',
+                displayYear: '1849年 - 1887年',
+                summary: '葡萄牙總督亞馬留推行強硬殖民政策，1887年簽署《中葡和好通商條約》。',
+                content: '1849年葡督亞馬留停止向清廷繳納地租，強行擴張管轄區域。1887年清政府與葡萄牙簽署《中葡和好通商條約》，確認葡萄牙「永居管理澳門」之權利，澳門正式成為葡萄牙殖民地。',
+                tag: '葡萄牙殖民',
+                keyFigures: '亞馬留 (João Maria Ferreira do Amaral)'
+            },
+            {
+                id: 'mac-4',
+                region: 'macau',
+                era: 'postwar',
+                title: '博彩業合法化與「一二·三事件」',
+                year: '1962 - 1966',
+                displayYear: '1962年 - 1966年',
+                summary: '博彩專營權確立奠定娛樂業基石；1966年「一二·三事件」重塑澳門政治格局。',
+                content: '1962年澳葡政府將博彩專營權頒予澳門旅遊娛樂有限公司（STDM，何鴻燊等創立）。1966年爆發「一二·三事件」，親北京社團影響力大增，澳葡政府施政權威銳減，澳門進入由華人社團主導社會事務的特殊時期。',
+                tag: '現代轉型',
+                keyFigures: '何鴻燊'
+            },
+            {
+                id: 'mac-5',
+                region: 'macau',
+                era: 'postwar',
+                title: '1999年主權移交與世界世界遺產城市',
+                year: '1999 - 至今',
+                displayYear: '1999年 - 至今',
+                summary: '澳門於1999年12月20日回歸，歷史城區列入世界遺產，發展為國際旅遊休閒中心。',
+                content: '1999年12月20日中葡兩國政府舉行澳門政權交接儀式，澳門特別行政區成立。2002年開放賭牌引進外資，2005年「澳門歷史城區」成功申報為世界文化遺產，形成獨特的華葡文化交融景觀。',
+                tag: '現代回歸',
+                keyFigures: '何厚鏵'
+            },
+
+            // --- Taiwan ---
+            {
+                id: 'tw-1',
+                region: 'taiwan',
+                era: 'early',
+                title: '原住民族時期與大航海荷西角力',
+                year: '史前 - 1662',
+                displayYear: '史前 - 1662年',
+                summary: '台灣為南島語族發源地之一；17世紀荷蘭與西班牙分別佔領南北進行貿易與傳教。',
+                content: '台灣原住民族分佈於平埔與高山。1624年荷蘭東印度公司在熱蘭遮城（今台南安平）築城，1626年西班牙佔領雞籠（基隆）與淡水。荷蘭人引進黃牛、開墾土地，並以新港文書傳播基督教。',
+                tag: '早期與大航海',
+                keyFigures: '郭懷一、巴達維亞當局'
+            },
+            {
+                id: 'tw-2',
+                region: 'taiwan',
+                era: 'ming-qing',
+                title: '明鄭王朝與清領時期',
+                year: '1662 - 1895',
+                displayYear: '1662年 - 1895年',
+                summary: '鄭成功擊敗荷蘭人建立明鄭政權；清朝擊敗明鄭後實施清領，漢人大量移民屯墾。',
+                content: '1662年鄭成功驅逐荷蘭人建立台灣第一個漢人政權（東寧王國）。1683年施琅率清軍攻台，清廷設台灣府。期間經歷渡台禁令、開山撫番與洋務運動（劉銘傳設省），移民形成「一府二鹿三艋舺」的繁榮城鎮格局。',
+                tag: '明清時期',
+                keyFigures: '鄭成功、施琅、劉銘傳'
+      },
+            {
+                id: 'tw-3',
+                region: 'taiwan',
+                era: 'colonial',
+                title: '日治時期與近代化歷程',
+                year: '1895 - 1945',
+                displayYear: '1895年 - 1945年',
+                summary: '甲午戰爭後清廷簽訂《馬關條約》割讓台灣，日本開啟長達半世紀的殖民統治。',
+                content: '1895年乙未戰爭後日本接收台灣。日治時期歷經武官總督壓制、同化政策與皇民化運動。總督府推動鐵路網絡、水利工程（嘉南大圳）、衛生體系與普及教育，奠定現代化基礎，但也伴隨對資源的掠奪與武力鎮壓。',
+                tag: '日治時期',
+                keyFigures: '八田與一、蔣渭水、後藤新平'
+            },
+            {
+                id: 'tw-4',
+                region: 'taiwan',
+                era: 'postwar',
+                title: '戰後接收、二二八事件與戒嚴時期',
+                year: '1945 - 1987',
+                displayYear: '1945年 - 1987年',
+                summary: '二戰後中華民國接收台灣，經歷二二八事件與長期戒嚴，經濟迎來「台灣奇蹟」。',
+                content: '1945年國民政府接收台灣。1947年爆發二二八事件，1949年國民政府遷台並頒佈戒嚴令（白色恐怖時期）。然而推動土地改革與出口導向經濟策略，讓台灣躍升為「亞洲四小龍」之一，半導體產業雛形建立。',
+                tag: '戰後轉型',
+                keyFigures: '蔣介石、蔣經國、孫運璿'
+            },
+            {
+                id: 'tw-5',
+                region: 'taiwan',
+                era: 'postwar',
+                title: '解嚴、民主化與現代社會',
+                year: '1987 - 至今',
+                displayYear: '1987年 - 至今',
+                summary: '1987年宣佈解嚴，開放黨禁報禁，1996年實施總統直選，順利完成多次政黨輪替。',
+                content: '1987年蔣經國宣佈解除戒嚴，開啟民主轉型。1996年舉辦首次總統直接民選，此後經歷多次政黨輪替，社會轉型為多元高科技、重視人權與民主價值的現代化社會。',
+                tag: '現代民主',
+                keyFigures: '李登輝'
+            }
+        ];
+
+        // Quiz Questions Data
+        const quizQuestions = [
+            {
+                question: '第一次鴉片戰爭後，清朝與英國簽訂哪一份條約，割讓了香港島？',
+                options: ['《北京條約》', '《南京條約》', '《馬關條約》', '《展拓香港界址專條》'],
+                correct: 1,
+                explanation: '1842年簽署的《南京條約》正式將香港島割讓給英國。'
+            },
+            {
+                question: '葡萄牙人最早獲准在澳門「租居」並開展貿易的時間大約是明朝哪一年？',
+                options: ['1553年', '1849年', '1887年', '1999年'],
+                correct: 0,
+                explanation: '葡萄牙人於1553年進入澳門借地晾曬貨物，並於1557年起繳納地租租居。'
+            },
+            {
+                question: '清朝劉銘傳在台灣推動洋務運動，並於哪一年正式建省，成為台灣首任巡撫？',
+                options: ['1683年', '1885年', '1895年', '1945年'],
+                correct: 1,
+                explanation: '清廷於光緒11年（1885年）決定台灣建省，劉銘傳為首任巡撫，推動鐵路與郵政等近代化建設。'
+            },
+            {
+                question: '1987年，台灣歷史上的哪一個重大事件宣告開啟了社會自由化與民主化的新頁？',
+                options: ['總統直選', '二二八事件', '宣告解除戒嚴令', '推動十大建設'],
+                correct: 2,
+                explanation: '1987年7月15日宣佈解除長達38年的戒嚴令，開放黨禁與報禁。'
+            },
+            {
+                question: '香港與澳門分別在何時回歸/主權移交，並成立特別行政區？',
+                options: ['香港1997年、澳門1999年', '香港1999年、澳門1997年', '香港1984年、澳門1987年', '香港1997年、澳門2002年'],
+                correct: 0,
+                explanation: '香港於1997年7月1日主權移交，澳門於1999年12月20日主權移交。'
+            }
+        ];
+
+        // App State
+        let currentTab = 'overview';
+        let currentEra = 'all';
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let selectedOption = null;
+
+        // Initialize Icons & App
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            renderOverview();
+            renderRegionDetails();
+            renderQuizQuestion();
+        });
+
+        // Tab Switching
+        function switchTab(tabId) {
+            currentTab = tabId;
+            document.querySelectorAll('.content-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(`section-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+            const activeTabBtn = document.getElementById(`tab-${tabId}`);
+            if (activeTabBtn) activeTabBtn.classList.add('tab-active');
+
+            // Close Mobile Menu
+            document.getElementById('mobileMenu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Era Filter
+        function filterByEra(era) {
+            currentEra = era;
+            document.querySelectorAll('.era-filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-era') === era) {
+                    btn.className = 'era-filter-btn px-3 py-1.5 rounded-full bg-crimson-800 text-white font-medium transition';
+                } else {
+                    btn.className = 'era-filter-btn px-3 py-1.5 rounded-full bg-sepia-100 hover:bg-sepia-200 text-sepia-900 font-medium transition';
+                }
+            });
+
+            renderOverview();
+            renderRegionDetails();
+        }
+
+        // Render Overview Matrix
+        function renderOverview() {
+            const getFiltered = (region) => historyData.filter(d => d.region === region && (currentEra === 'all' || d.era === currentEra));
+
+            const renderList = (data, containerId) => {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                if (data.length === 0) {
+                    container.innerHTML = `<li class="text-gray-400 italic">此時期無符合資料</li>`;
+                    return;
+                }
+                container.innerHTML = data.map(item => `
+                    <li class="bg-white p-3 rounded-lg border border-sepia-200 hover:border-crimson-800/40 cursor-pointer transition shadow-sm" onclick="openModal('${item.id}')">
+                        <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+                            <span class="font-semibold text-crimson-800">${item.displayYear}</span>
+                            <span class="px-2 py-0.5 bg-sepia-100 rounded text-[10px] text-sepia-800">${item.tag}</span>
+                        </div>
+                        <h4 class="font-bold text-sepia-900 font-serif-tc text-base">${item.title}</h4>
+                        <p class="text-xs text-gray-600 mt-1 line-clamp-2">${item.summary}</p>
+                    </li>
+                `).join('');
+            };
+
+            renderList(getFiltered('hk'), 'overview-hk-list');
+            renderList(getFiltered('macau'), 'overview-macau-list');
+            renderList(getFiltered('taiwan'), 'overview-taiwan-list');
+        }
+
+        // Render Detailed Regional Timelines
+        function renderRegionDetails() {
+            ['hk', 'macau', 'taiwan'].forEach(region => {
+                const container = document.getElementById(`${region}-detail-container`);
+                if (!container) return;
+
+                const filtered = historyData.filter(d => d.region === region && (currentEra === 'all' || d.era === currentEra));
+
+                if (filtered.length === 0) {
+                    container.innerHTML = `<div class="text-center py-12 text-gray-500">當前篩選時期下無相關事件</div>`;
+                    return;
+                }
+
+                container.innerHTML = filtered.map((item, idx) => `
+                    <div class="bg-white p-6 rounded-2xl border border-sepia-200 shadow-sm hover:shadow-md transition relative flex flex-col md:flex-row gap-6 items-start">
+                        <div class="md:w-1/4 shrink-0">
+                            <span class="inline-block px-3 py-1 bg-amber-100 text-amber-900 font-bold text-xs rounded-full mb-2">${item.tag}</span>
+                            <div class="text-xl font-bold font-serif-tc text-crimson-800">${item.displayYear}</div>
+                        </div>
+                        <div class="md:w-3/4 space-y-2">
+                            <h3 class="text-xl font-bold font-serif-tc text-sepia-900 cursor-pointer hover:text-crimson-800 transition" onclick="openModal('${item.id}')">
+                                ${item.title}
+                            </h3>
+                            <p class="text-sepia-800 text-sm leading-relaxed">${item.content}</p>
+                            ${item.keyFigures ? `<div class="text-xs text-gray-500 pt-2 border-t border-sepia-100">關鍵人物/主體：<span class="text-sepia-900 font-medium">${item.keyFigures}</span></div>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        // Global Search Functionality
+        function handleSearch(type = 'desktop') {
+            const inputId = type === 'mobile' ? 'mobileSearchInput' : 'searchInput';
+            const query = document.getElementById(inputId).value.trim().toLowerCase();
+            const resultsSection = document.getElementById('searchResultsSection');
+            const resultsGrid = document.getElementById('searchResultsGrid');
+            const searchCount = document.getElementById('searchCount');
+
+            if (!query) {
+                resultsSection.classList.add('hidden');
+                return;
+            }
+
+            const matches = historyData.filter(item => 
+                item.title.toLowerCase().includes(query) ||
+                item.summary.toLowerCase().includes(query) ||
+                item.content.toLowerCase().includes(query) ||
+                item.displayYear.toLowerCase().includes(query) ||
+                (item.keyFigures && item.keyFigures.toLowerCase().includes(query))
+            );
+
+            searchCount.innerText = `(共 ${matches.length} 項結果)`;
+            resultsSection.classList.remove('hidden');
+
+            if (matches.length === 0) {
+                resultsGrid.innerHTML = `<div class="col-span-full text-center py-8 text-gray-500">找不到包含「${query}」的相關歷史記錄</div>`;
+                return;
+            }
+
+            const regionNames = { hk: '香港', macau: '澳門', taiwan: '台灣' };
+
+            resultsGrid.innerHTML = matches.map(item => `
+                <div class="bg-sepia-50 p-4 rounded-xl border border-sepia-200 hover:border-crimson-800 transition cursor-pointer" onclick="openModal('${item.id}')">
+                    <div class="flex justify-between items-center text-xs mb-1">
+                        <span class="font-bold text-crimson-800">[${regionNames[item.region]}] ${item.displayYear}</span>
+                        <span class="bg-sepia-200 text-sepia-800 px-2 py-0.5 rounded text-[10px]">${item.tag}</span>
+                    </div>
+                    <h4 class="font-bold font-serif-tc text-sepia-900 text-base mb-1">${item.title}</h4>
+                    <p class="text-xs text-gray-600 line-clamp-2">${item.summary}</p>
+                </div>
+            `).join('');
+        }
+
+        function closeSearch() {
+            document.getElementById('searchResultsSection').classList.add('hidden');
+            document.getElementById('searchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
+        }
+
+        // Modal Functionality
+        function openModal(id) {
+            const item = historyData.find(d => d.id === id);
+            if (!item) return;
+
+            const regionNames = { hk: '香港歷史', macau: '澳門歷史', taiwan: '台灣歷史' };
+            const modalContent = document.getElementById('modalContent');
+
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 bg-crimson-800 text-white text-xs font-bold rounded-full">${regionNames[item.region]}</span>
+                        <span class="px-3 py-1 bg-sepia-100 text-sepia-800 text-xs font-medium rounded-full">${item.tag}</span>
+                    </div>
+                    <h2 class="text-2xl font-bold font-serif-tc text-sepia-900">${item.title}</h2>
+                    <div class="text-sm font-semibold text-crimson-800 border-b border-sepia-200 pb-2">年代範圍：${item.displayYear}</div>
+                    <div class="text-sepia-900 text-base leading-relaxed bg-sepia-50 p-4 rounded-xl border border-sepia-200">
+                        ${item.content}
+                    </div>
+                    ${item.keyFigures ? `
+                        <div class="text-sm text-gray-600 bg-amber-50 p-3 rounded-lg border border-amber-200">
+                            <strong>關鍵人物/組織：</strong> ${item.keyFigures}
+                        </div>
+                    ` : ''}
+                    <div class="pt-4 flex justify-end">
+                        <button onclick="closeModal()" class="px-5 py-2 bg-sepia-800 text-white rounded-lg text-sm hover:bg-sepia-900 transition">關閉窗口</button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('eventModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('eventModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Quiz Logic
+        function renderQuizQuestion() {
+            const quizCard = document.getElementById('quiz-card');
+            const progress = document.getElementById('quiz-progress');
+
+            if (currentQuizIndex >= quizQuestions.length) {
+                showQuizResults();
+                return;
+            }
+
+            const q = quizQuestions[currentQuizIndex];
+            progress.style.width = `${((currentQuizIndex) / quizQuestions.length) * 100}%`;
+
+            quizCard.innerHTML = `
+                <div class="space-y-4">
+                    <div class="text-xs font-bold text-crimson-800 tracking-wider uppercase">問題 ${currentQuizIndex + 1} / ${quizQuestions.length}</div>
+                    <h3 class="text-lg sm:text-xl font-bold font-serif-tc text-sepia-900">${q.question}</h3>
+                    <div class="space-y-2 pt-2">
+                        ${q.options.map((opt, i) => `
+                            <button onclick="selectOption(${i})" id="opt-${i}" 
+                                class="w-full text-left p-4 rounded-xl border border-sepia-200 hover:border-crimson-800 hover:bg-sepia-50 font-medium text-sm sm:text-base transition flex items-center justify-between">
+                                <span>${opt}</span>
+                                <i data-lucide="circle" class="w-5 h-5 text-gray-300 opt-icon"></i>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="explanation-box" class="hidden p-4 rounded-xl text-sm font-medium"></div>
+                    <div class="pt-4 flex justify-end">
+                        <button id="next-btn" onclick="nextQuestion()" disabled class="px-6 py-2.5 bg-gray-300 text-gray-500 rounded-xl font-bold text-sm transition">
+                            ${currentQuizIndex === quizQuestions.length - 1 ? '查看總分' : '下一題'}
+                        </button>
+                    </div>
+                </div>
+            `;
+            selectedOption = null;
+            lucide.createIcons();
+        }
+
+        function selectOption(index) {
+            if (selectedOption !== null) return; // Prevent changing after selection
+            selectedOption = index;
+
+            const q = quizQuestions[currentQuizIndex];
+            const expBox = document.getElementById('explanation-box');
+            const nextBtn = document.getElementById('next-btn');
+
+            q.options.forEach((_, i) => {
+                const btn = document.getElementById(`opt-${i}`);
+                if (i === q.correct) {
+                    btn.classList.add('bg-emerald-50', 'border-emerald-600', 'text-emerald-900');
+                } else if (i === index) {
+                    btn.classList.add('bg-red-50', 'border-red-500', 'text-red-900');
+                }
+            });
+
+            if (index === q.correct) {
+                quizScore++;
+                expBox.className = 'p-4 rounded-xl text-sm font-medium bg-emerald-50 text-emerald-800 border border-emerald-200';
+                expBox.innerHTML = `<strong>答對了！</strong> ${q.explanation}`;
+            } else {
+                expBox.className = 'p-4 rounded-xl text-sm font-medium bg-red-50 text-red-800 border border-red-200';
+                expBox.innerHTML = `<strong>回答錯誤！</strong> ${q.explanation}`;
+            }
+
+            expBox.classList.remove('hidden');
+            nextBtn.disabled = false;
+            nextBtn.className = 'px-6 py-2.5 bg-crimson-800 text-white rounded-xl font-bold text-sm hover:bg-crimson-900 transition';
+        }
+
+        function nextQuestion() {
+            currentQuizIndex++;
+            renderQuizQuestion();
+        }
+
+        function showQuizResults() {
+            document.getElementById('quiz-card').classList.add('hidden');
+            document.getElementById('quiz-progress').parentElement.classList.add('hidden');
+
+            const resultDiv = document.getElementById('quiz-result');
+            const percentage = Math.round((quizScore / quizQuestions.length) * 100);
+
+            document.getElementById('score-badge').innerText = `${percentage}%`;
+
+            let feedback = '';
+            if (percentage === 100) feedback = '太棒了！你是港澳台歷史通！';
+            else if (percentage >= 60) feedback = '表現優異！對港澳台歷史有很不錯的瞭解。';
+            else feedback = '再接再厲！建議多點擊探索各單元的歷史介紹喔。';
+
+            document.getElementById('quiz-feedback-text').innerText = feedback;
+            resultDiv.classList.remove('hidden');
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            selectedOption = null;
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-card').classList.remove('hidden');
+            document.getElementById('quiz-progress').parentElement.classList.remove('hidden');
+            renderQuizQuestion();
+        }
+    </script>
+</body>
+</html>
