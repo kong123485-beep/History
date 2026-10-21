@@ -19,6 +19,7 @@ h1{font-size:32px;letter-spacing:-0.02em;line-height:1.2} h1 span{color:var(--mu
 .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 18px 14px;transition:.2s;display:flex;flex-direction:column}
 .card:hover{border-color:#a8a29e;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
 .badge{display:inline-block;font-size:11px;letter-spacing:.05em;padding:3px 8px;border-radius:999px;background:#f5f5f4;border:1px solid var(--border);color:var(--muted);margin-bottom:10px}
+.badge.new{background:#dcfce7;border-color:#86efac;color:#166534}
 .card h3{font-size:17px;margin-bottom:4px;line-height:1.35} .card .en{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted);word-break:break-all;margin-bottom:12px}
 .actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap} .actions a{flex:1;text-align:center;font-size:13px;padding:8px 10px;border-radius:10px;text-decoration:none;border:1px solid var(--border)}
 .actions .view{background:var(--accent);color:white;border-color:var(--accent)} .actions .code{background:white;color:var(--text)}
@@ -31,13 +32,18 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);font-
 <header>
 <div>
 <h1>History Archive <span>歷史檔案 / kong123485-beep</span></h1>
-<p style="margin-top:10px;color:#57534e;font-size:14px;max-width:560px">此目錄索引 <code>https://github.com/kong123485-beep/History</code> 內所有歷史對比分析頁面。GitHub Pages 自動部署。</p>
+<p style="margin-top:10px;color:#57534e;font-size:14px;max-width:560px">此目錄索引 <code>https://github.com/kong123485-beep/History</code> 內所有歷史對比分析頁面。GitHub Pages 自動部署。<br>已新增 JRE 萬能論證範本 → <code>jrestudy.html</code></p>
 </div>
 <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
-<input id="q" class="search" placeholder="搜尋：例如 Cold War, 法國, 德川, 拉丁文, 表格, 大中華...">
+<input id="q" class="search" placeholder="搜尋：例如 JRE, Cold War, 法國, 德川, 拉丁文, 表格, 大中華...">
+<div style="display:flex;gap:8px">
+<a class="btn primary" href="https://github.com/kong123485-beep/History" target="_blank">GitHub Repo</a>
+<a class="btn" href="https://kong123485-beep.github.io/History/jrestudy.html" target="_blank">開啟 JRE 範本 →</a>
+</div>
 </div>
 </header>
 
+<div class="section" style="border:2px dashed #16a34a;border-radius:16px;padding:16px;background:#f0fdf4"><h2>📝 JRE 溫習範本 / JRE Study Template</h2><p>萬能正反論證雙語對照 - 新增</p><div class="grid" id="g0"></div></div>
 <div class="section"><h2>📚 革命與統一對比 / Revolutions & Unifications</h2><p>法國 vs 俄國、意大利 vs 德國、日本 vs 中國近代化</p><div class="grid" id="g1"></div></div>
 <div class="section"><h2>🌍 世界大戰與冷戰 / World Wars & Cold War</h2><p>一次 vs 二次大戰爆發、美國冷戰對比</p><div class="grid" id="g2"></div></div>
 <div class="section"><h2>⛩ 幕末德川 / Bakumatsu - Fall of Tokugawa</h2><p>賴肖爾觀點與原稿校正版對比</p><div class="grid" id="g3"></div></div>
@@ -47,12 +53,13 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);font-
 
 <footer>
 <div>Source Directory: <a href="https://github.com/kong123485-beep/History" style="color:inherit">github.com/kong123485-beep/History</a> • Branch: main • Deploy: github-pages</div>
-<div>Last updated: 2026-10-10 • Pages URL: kong123485-beep.github.io/History/</div>
-<div style="margin-top:8px;font-size:11px;color:#9ca3af">已修復：全部連結改為絕對路徑 https://.../History/xxx.html，避免相對路徑失效</div>
+<div>Last updated: 2026-10-21 • Pages URL: kong123485-beep.github.io/History/</div>
+<div style="margin-top:8px;font-size:11px;color:#9ca3af">已修復：全部連結改為絕對路徑 https://.../History/xxx.html，避免相對路徑失效 • 已新增 jrestudy.html</div>
 </footer>
 </div>
 <script>
 const files=[
+{n:"jrestudy.html",zh:"JRE 萬能正反論證雙語對照溫習範本",en:"JRE Bilingual Argument Template - NEW",cat:"g0",time:"剛剛 - NEW", isNew:true},
 {n:"Cold-War-Usa-Vs.html",zh:"冷戰對比：美國視角",en:"Cold War - USA Vs",cat:"g2",time:"2 weeks ago"},
 {n:"French-Vs-Russian-Revolution.html",zh:"法國大革命 vs 俄國革命",en:"French Vs Russian Revolution",cat:"g1",time:"2 weeks ago"},
 {n:"History-Tables.html",zh:"歷史對比總表",en:"History Tables - Comparison Summary",cat:"g6",time:"3 minutes ago"},
@@ -68,13 +75,14 @@ const files=[
 {n:"history_4.html",zh:"綜合歷史分析 - history_4",en:"History 4 - Comprehensive",cat:"g6",time:"3 minutes ago"}
 ];
 function render(list){
- ["g1","g2","g3","g4","g5","g6"].forEach(id=>{
+ ["g0","g1","g2","g3","g4","g5","g6"].forEach(id=>{
     const el = document.getElementById(id);
     if(el) el.innerHTML="";
   });
  list.forEach(f=>{
   const el=document.createElement("div"); el.className="card";
-  el.innerHTML=`<span class="badge">${f.time}</span><h3>${f.zh}</h3><div class="en">${f.n}</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/${f.n}" target="_blank" style="width:100%">開啟文件 →</a></div>`;
+  const badgeClass = f.isNew ? 'badge new' : 'badge';
+  el.innerHTML=`<span class="${badgeClass}">${f.time}</span><h3>${f.zh}</h3><div class="en">${f.n}</div><div class="actions"><a class="view" href="https://kong123485-beep.github.io/History/${f.n}" target="_blank" style="width:100%">開啟文件 →</a></div>`;
   const container = document.getElementById(f.cat);
   if(container) container.appendChild(el);
  });
