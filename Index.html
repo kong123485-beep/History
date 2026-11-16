@@ -1,82 +1,113 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>History Archive · 歷史檔案</title>
-<style>
-body{margin:0;font-family:"PingFang HK","Microsoft JhengHei",system-ui,sans-serif;background:#fafaf9;color:#1c1917}
-.wrap{max-width:1100px;margin:auto;padding:32px 20px 80px}
-h1{font-size:42px;margin:6px 0 8px}
-.badge{display:inline-block;background:#dcfce7;border:1px solid #86efac;color:#166534;border-radius:999px;padding:4px 10px;font-size:12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:20px}
-.card{background:#fff;border:2px solid #16a34a;border-radius:16px;padding:18px}
-.card h3{margin:8px 0 4px;font-size:18px}
-.card p{color:#57534e;font-size:13px;line-height:1.6}
-.card code{font-size:11px;color:#78716c;word-break:break-all}
-.btn{display:block;text-align:center;background:#1c1917;color:#fff;padding:10px;border-radius:10px;text-decoration:none;margin-top:12px;font-size:14px}
-.note{background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:12px 14px;font-size:13px;color:#166534;margin-top:16px}
-.search{width:100%;padding:12px 14px;border:1px solid #e7e5e4;border-radius:12px;font-size:15px;margin-top:16px}
-h2{margin-top:36px}
-.old{border:1px solid #e7e5e4}
-.old .btn{background:#fff;color:#1c1917;border:1px solid #1c1917}
-</style>
-</head>
-<body>
-<div class="wrap">
-<p>📚 HISTORY ARCHIVE · 歷史檔案</p>
-<h1>History Archive<br><span style="font-size:20px;color:#78716c">歷史檔案 / kong123485-beep</span></h1>
-<p>此目錄索引 <code>https://github.com/kong123485-beep/History</code> 內所有歷史對比分析頁面。GitHub Pages 自動部署。</p>
-<div class="note"><strong>最新新增：中日戰爭 + 日本三語版 + 韓國三語版</strong> — 中日戰爭對比分析已上架，一次睇晒。</div>
-<input class="search" placeholder="搜尋：例如 Japan, Korea, JRE, 法國, 德川, 中日戰爭…" oninput="document.querySelectorAll('.card').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(this.value.toLowerCase())?'block':'none')">
-
-<h2>✨ 最新新增 · New</h2>
-<div class="grid">
-  <article class="card">
-    <span class="badge">now - NEW</span>
-    <h3>中日戰爭：對比分析</h3>
-    <p>China-Japanese War — Comparative Analysis<br>甲午戰爭 (1894-95) vs 抗日戰爭 / 第二次中日戰爭 (1937-45)<br>背景 → 爆發原因 → 過程 → 結局 → 影響對比</p>
-    <code>chinajapanesewar.html</code>
-    <a class="btn" href="https://kong123485-beep.github.io/History/chinajapanesewar.html">開啟文件 →</a>
-  </article>
-  <article class="card">
-    <span class="badge">now - NEW</span>
-    <h3>日本簡史：三語對照版</h3>
-    <p>Short History of Japan — Trilingual<br>中文 / English / 日本語（附假名 furigana）<br>繩文 → 彌生 → 古墳 → 飛鳥 → 奈良 → 平安 → 鎌倉 → 室町 → 安土桃山 → 江戶 → 明治 → 大正 → 昭和 → 平成 → 令和</p>
-    <code>Short-History-Japan-Trilingual.html</code>
-    <a class="btn" href="https://kong123485-beep.github.io/History/Short-History-Japan-Trilingual.html">開啟文件 →</a>
-  </article>
-  <article class="card">
-    <span class="badge">now - NEW</span>
-    <h3>韓國簡史：三語對照版</h3>
-    <p>Short History of Korea — Trilingual<br>中文 / English / 한국어<br>檀君神話 / 古朝鮮 → 三國時代 → 統一新羅 → 高麗 → 朝鮮王朝 → 日本佔領 → 韓戰 → 漢江奇蹟 → 民主化 → K-Culture</p>
-    <code>Short-History-Korea-Trilingual.html</code>
-    <a class="btn" href="https://kong123485-beep.github.io/History/Short-History-Korea-Trilingual.html">開啟文件 →</a>
-  </article>
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>History Archive · 歷史檔案 — V2</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:"PingFang HK","Microsoft JhengHei",system-ui,sans-serif;background:#f3efe8;color:#1c1917}
+.top{background:#1c1917;color:#fff;padding:36px 0 28px}.topin,.wrap{max-width:1120px;margin:auto;padding:0 20px}
+.eyebrow{letter-spacing:.18em;font-size:12px;color:#d6c9a8}h1{font-size:52px;line-height:1.05;margin:14px 0 10px}h1 span{font-size:20px;color:#a8a29e;font-weight:400}
+.sub{color:#d6d3d1;font-size:14px;line-height:1.7;max-width:720px}.sub code{background:#292524;padding:2px 6px;border-radius:6px;color:#fde68a}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start;padding-top:24px}
+.side{position:sticky;top:20px;background:#fff;border:1px solid #e7e5e4;border-radius:16px;padding:16px}
+.side h3{font-size:12px;letter-spacing:.14em;color:#78716c;margin:0 0 10px}
+.chip{display:block;width:100%;text-align:left;border:0;background:#fafaf9;padding:10px 12px;border-radius:10px;margin-bottom:6px;cursor:pointer;font-size:14px}
+.chip.on{background:#1c1917;color:#fff}.chip small{float:right;color:#a8a29e}
+.search{width:100%;padding:13px 14px;border:1px solid #e7e5e4;border-radius:12px;font-size:15px;background:#fff}
+.count{font-size:13px;color:#78716c;margin:14px 0 10px}
+.list{background:#fff;border:1px solid #e7e5e4;border-radius:16px;overflow:hidden}
+.row{display:grid;grid-template-columns:44px 1fr 76px 64px;gap:14px;align-items:center;padding:16px 18px;text-decoration:none;color:#1c1917;border-bottom:1px solid #f5f5f4}
+.row:last-child{border-bottom:0}.row:hover{background:#fffbeb}
+.num{font-family:Georgia,serif;font-size:22px;color:#d6d3d1}.t{font-size:17px;font-weight:700;line-height:1.4}.en{display:block;font-size:12px;color:#78716c;margin-top:3px}.d{display:block;font-size:13px;color:#57534e;margin-top:4px;line-height:1.5}
+.cat{font-size:12px;text-align:center;background:#f5f5f4;border-radius:999px;padding:6px 0}.go{font-size:13px;font-weight:700;text-align:right}
+.new{display:inline-block;background:#dc2626;color:#fff;font-size:10px;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:middle}
+.hero3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 6px}
+.hero3 a{background:#fff;border:1px solid #e7e5e4;border-radius:14px;padding:14px;text-decoration:none;color:#1c1917}
+.hero3 b{font-size:15px;line-height:1.4;display:block}.hero3 span{font-size:12px;color:#78716c;display:block;margin-top:6px;line-height:1.5}
+.foot{font-size:12px;color:#78716c;margin:22px 0 60px;line-height:1.7}
+@media(max-width:820px){h1{font-size:36px}.layout{grid-template-columns:1fr}.side{position:static}.hero3{grid-template-columns:1fr}.row{grid-template-columns:32px 1fr}.cat,.go{display:none}}
+</style></head><body>
+<header class="top"><div class="topin"><div class="eyebrow">📚 HISTORY ARCHIVE · 歷史檔案</div><h1>History Archive<br><span>歷史檔案 / kong123485-beep · V2 目錄版</span></h1>
+<p class="sub">此目錄索引 <code>kong123485-beep.github.io/History</code> 內所有歷史對比分析頁面。GitHub Pages 自動部署。左邊按分類篩選，上面可即時搜尋。</p></div></header>
+<div class="wrap"><div class="layout">
+<aside class="side"><h3>分類 · CATEGORY</h3>
+<button class="chip on" data-filter="全部">全部檔案 <small>19</small></button>
+<button class="chip" data-filter="對比">對比分析 <small>7</small></button>
+<button class="chip" data-filter="中國史">中國史 <small>1</small></button>
+<button class="chip" data-filter="香港史">香港史 <small>2</small></button>
+<button class="chip" data-filter="日本史">日本史 <small>3</small></button>
+<button class="chip" data-filter="韓國史">韓國史 <small>1</small></button>
+<button class="chip" data-filter="世界史">世界史 <small>2</small></button>
+<button class="chip" data-filter="思想">思想 / 策略 <small>2</small></button>
+<button class="chip" data-filter="溫習">溫習範本 <small>1</small></button>
+<p style="font-size:12px;color:#78716c;line-height:1.6;margin:14px 0 0">最新：中日戰爭 · 日本三語版 · 韓國三語版</p></aside>
+<main>
+<div class="hero3">
+<a href="https://kong123485-beep.github.io/History/chinajapanesewar.html"><b>🔥 中日戰爭：對比分析 <span class="new">NEW</span></b><span>甲午戰爭 vs 抗日戰爭 · chinajapanesewar.html</span></a>
+<a href="https://kong123485-beep.github.io/History/Short-History-Japan-Trilingual.html"><b>🇯🇵 日本簡史：三語對照版</b><span>中英日 · 附假名 furigana</span></a>
+<a href="https://kong123485-beep.github.io/History/Short-History-Korea-Trilingual.html"><b>🇰🇷 韓國簡史：三語對照版</b><span>中英韓 · 檀君神話 → K-Culture</span></a>
 </div>
-
-<h2>📂 全部檔案 · All Files</h2>
-<div class="grid">
-  <article class="card old"><span class="badge">NEW</span><h3>中日戰爭：對比分析</h3><p>China-Japanese War — Comparative Analysis<br>甲午戰爭 vs 抗日戰爭</p><code>chinajapanesewar.html</code><a class="btn" href="https://kong123485-beep.github.io/History/chinajapanesewar.html">開啟文件 →</a></article>
-  <article class="card old"><span class="badge">NEW</span><h3>九流十家：先秦諸子百家互動版</h3><p>Nine Schools Ten Families — Interactive</p><code>Visually-Stunning-Traditional-Chinese.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Visually-Stunning-Traditional-Chinese.html">開啟文件 →</a></article>
-  <article class="card old"><span class="badge">NEW</span><h3>三十六計：互動版</h3><p>Thirty-Six Stratagems — Interactive</p><code>thirty_six_stratagems.html</code><a class="btn" href="https://kong123485-beep.github.io/History/thirty_six_stratagems.html">開啟文件 →</a></article>
-  <article class="card old"><h3>JRE 萬能正反論證雙語對照溫習範本</h3><p>JRE Bilingual Argument Template</p><code>jrestudy.html</code><a class="btn" href="https://kong123485-beep.github.io/History/jrestudy.html">開啟文件 →</a></article>
-  <article class="card old"><h3>香港殖民地史：由鴉片戰爭到28位港督</h3><p>Hong Kong — From Opium War to 28 Governors</p><code>28.html</code><a class="btn" href="https://kong123485-beep.github.io/History/28.html">開啟文件 →</a></article>
-  <article class="card old"><h3>香港歷史長卷互動版 1841-1997</h3><p>Beautiful About Hong Kong — Interactive Timeline</p><code>Beautiful-About-Hong-Kong.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Beautiful-About-Hong-Kong.html">開啟文件 →</a></article>
-  <article class="card old"><h3>中國近代史（完整版 1840-1978）</h3><p>Modern Chinese History 1840-1978</p><code>Chinese-Modern-History.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Chinese-Modern-History.html">開啟文件 →</a></article>
-  <article class="card old"><h3>法國騷亂成因（雙語）</h3><p>France Riots Causes Bilingual</p><code>France-Riots-Causes-Bilingual.html</code><a class="btn" href="https://kong123485-beep.github.io/History/France-Riots-Causes-Bilingual.html">開啟文件 →</a></article>
-  <article class="card old"><h3>以巴衝突（雙語）</h3><p>Israeli-Palestinian Conflict</p><code>Israeli-Palestinian-Conflict.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Israeli-Palestinian-Conflict.html">開啟文件 →</a></article>
-  <article class="card old"><h3>冷戰對比：美國視角</h3><p>Cold War — USA Vs</p><code>Cold-War-Usa-Vs.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Cold-War-Usa-Vs.html">開啟文件 →</a></article>
-  <article class="card old"><h3>法國大革命 vs 俄國革命</h3><p>French Vs Russian Revolution</p><code>French-Vs-Russian-Revolution.html</code><a class="btn" href="https://kong123485-beep.github.io/History/French-Vs-Russian-Revolution.html">開啟文件 →</a></article>
-  <article class="card old"><h3>近代化對比：日本 vs 中國</h3><p>Modernization Japan Vs China</p><code>Modernization-Japan-Vs-China.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Modernization-Japan-Vs-China.html">開啟文件 →</a></article>
-  <article class="card old"><h3>大戰爆發：一次 vs 二次</h3><p>Outbreak WWI Vs WWII</p><code>Outbreak-Wwi-Vs-Wwii.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Outbreak-Wwi-Vs-Wwii.html">開啟文件 →</a></article>
-  <article class="card old"><h3>統一對比：意大利 vs 德國</h3><p>Unification Italy Vs Germany</p><code>Unification-Italy-Vs-Germany.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Unification-Italy-Vs-Germany.html">開啟文件 →</a></article>
-  <article class="card old"><h3>德川幕府滅亡 — 原稿校正版</h3><p>Tokugawa Fall — Original Corrected</p><code>Tokugawa-Fall-Original-Corrected.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Tokugawa-Fall-Original-Corrected.html">開啟文件 →</a></article>
-  <article class="card old"><h3>德川滅亡 — 賴肖爾觀點</h3><p>Tokugawa Fall — Reischauer</p><code>Tokugawa-Fall-Reischauer.html</code><a class="btn" href="https://kong123485-beep.github.io/History/Tokugawa-Fall-Reischauer.html">開啟文件 →</a></article>
-  <article class="card old"><h3>歷史對比總表 / 大中華歷史整合 Web App / 綜合歷史分析</h3><p>History Tables / Greater China History / History 4</p><code>History-Tables.html</code><a class="btn" href="https://kong123485-beep.github.io/History/History-Tables.html">開啟文件 →</a></article>
-</div>
-
-<p style="font-size:12px;color:#78716c;margin-top:32px">Source: kong123485-beep.github.io/History • Branch: main • Deploy: github-pages<br>已新增 chinajapanesewar.html • 已新增 Short-History-Japan-Trilingual.html • 已新增 Short-History-Korea-Trilingual.html</p>
-</div>
-</body>
-</html>
+<input class="search" id="q" placeholder="搜尋：例如 Japan, Korea, JRE, 法國, 德川, 中日戰爭…">
+<p class="count" id="count">共 19 個檔案 · 全部指去 kong123485-beep.github.io/History/</p>
+<div class="list" id="list"><a class="row" href="https://kong123485-beep.github.io/History/chinajapanesewar.html" data-cat="對比" data-search="中日戰爭：對比分析 China-Japanese War — Comparative Analysis 甲午戰爭 (1894-95) vs 抗日戰爭 (1937-45) · 背景 → 原因 → 過程 → 結局 → 影響 對比 chinajapanesewar.html">
+      <span class="num">01</span>
+      <span class="main"><span class="t">中日戰爭：對比分析 <span class="new">NEW</span></span><span class="en">China-Japanese War — Comparative Analysis</span><span class="d">甲午戰爭 (1894-95) vs 抗日戰爭 (1937-45) · 背景 → 原因 → 過程 → 結局 → 影響</span></span>
+      <span class="cat">對比</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Short-History-Japan-Trilingual.html" data-cat="日本史" data-search="日本簡史：三語對照版 Short History of Japan — Trilingual 中文 / English / 日本語 · 附假名 furigana · 繩文 → 令和 日本史 Short-History-Japan-Trilingual.html">
+      <span class="num">02</span>
+      <span class="main"><span class="t">日本簡史：三語對照版 <span class="new">NEW</span></span><span class="en">Short History of Japan — Trilingual</span><span class="d">中文 / English / 日本語 · 附假名 furigana · 繩文 → 令和</span></span>
+      <span class="cat">日本史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Short-History-Korea-Trilingual.html" data-cat="韓國史" data-search="韓國簡史：三語對照版 Short History of Korea — Trilingual 中文 / English / 한국어 · 檀君神話 → K-Culture 韓國史 Short-History-Korea-Trilingual.html">
+      <span class="num">03</span>
+      <span class="main"><span class="t">韓國簡史：三語對照版 <span class="new">NEW</span></span><span class="en">Short History of Korea — Trilingual</span><span class="d">中文 / English / 한국어 · 檀君神話 → K-Culture</span></span>
+      <span class="cat">韓國史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Visually-Stunning-Traditional-Chinese.html" data-cat="思想" data-search="九流十家：先秦諸子百家互動版 Nine Schools Ten Families — Interactive 先秦諸子百家 · 互動版 思想 Visually-Stunning-Traditional-Chinese.html">
+      <span class="num">04</span>
+      <span class="main"><span class="t">九流十家：先秦諸子百家互動版 <span class="new">NEW</span></span><span class="en">Nine Schools Ten Families — Interactive</span><span class="d">先秦諸子百家 · 互動版</span></span>
+      <span class="cat">思想</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/thirty_six_stratagems.html" data-cat="思想" data-search="三十六計：互動版 Thirty-Six Stratagems — Interactive 三十六計 · 互動版 思想 thirty_six_stratagems.html">
+      <span class="num">05</span>
+      <span class="main"><span class="t">三十六計：互動版 <span class="new">NEW</span></span><span class="en">Thirty-Six Stratagems — Interactive</span><span class="d">三十六計 · 互動版</span></span>
+      <span class="cat">思想</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/jrestudy.html" data-cat="溫習" data-search="JRE 萬能正反論證雙語對照溫習範本 JRE Bilingual Argument Template 正反論證 · 雙語對照 · 溫習範本 溫習 jrestudy.html">
+      <span class="num">06</span>
+      <span class="main"><span class="t">JRE 萬能正反論證雙語對照溫習範本 </span><span class="en">JRE Bilingual Argument Template</span><span class="d">正反論證 · 雙語對照 · 溫習範本</span></span>
+      <span class="cat">溫習</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/28.html" data-cat="香港史" data-search="香港殖民地史：由鴉片戰爭到28位港督 Hong Kong — From Opium War to 28 Governors 鴉片戰爭 → 28位港督 香港史 28.html">
+      <span class="num">07</span>
+      <span class="main"><span class="t">香港殖民地史：由鴉片戰爭到28位港督 </span><span class="en">Hong Kong — From Opium War to 28 Governors</span><span class="d">鴉片戰爭 → 28位港督</span></span>
+      <span class="cat">香港史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Beautiful-About-Hong-Kong.html" data-cat="香港史" data-search="香港歷史長卷互動版 1841-1997 Beautiful About Hong Kong — Interactive Timeline 1841-1997 · 互動時間軸 香港史 Beautiful-About-Hong-Kong.html">
+      <span class="num">08</span>
+      <span class="main"><span class="t">香港歷史長卷互動版 1841-1997 </span><span class="en">Beautiful About Hong Kong — Interactive Timeline</span><span class="d">1841-1997 · 互動時間軸</span></span>
+      <span class="cat">香港史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Chinese-Modern-History.html" data-cat="中國史" data-search="中國近代史（完整版 1840-1978） Modern Chinese History 1840-1978 1840-1978 · 完整版 中國史 Chinese-Modern-History.html">
+      <span class="num">09</span>
+      <span class="main"><span class="t">中國近代史（完整版 1840-1978） </span><span class="en">Modern Chinese History 1840-1978</span><span class="d">1840-1978 · 完整版</span></span>
+      <span class="cat">中國史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/France-Riots-Causes-Bilingual.html" data-cat="世界史" data-search="法國騷亂成因（雙語） France Riots Causes Bilingual 雙語對照 世界史 France-Riots-Causes-Bilingual.html">
+      <span class="num">10</span>
+      <span class="main"><span class="t">法國騷亂成因（雙語） </span><span class="en">France Riots Causes Bilingual</span><span class="d">雙語對照</span></span>
+      <span class="cat">世界史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Israeli-Palestinian-Conflict.html" data-cat="世界史" data-search="以巴衝突（雙語） Israeli-Palestinian Conflict 雙語對照 世界史 Israeli-Palestinian-Conflict.html">
+      <span class="num">11</span>
+      <span class="main"><span class="t">以巴衝突（雙語） </span><span class="en">Israeli-Palestinian Conflict</span><span class="d">雙語對照</span></span>
+      <span class="cat">世界史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Cold-War-Usa-Vs.html" data-cat="對比" data-search="冷戰對比：美國視角 Cold War — USA Vs 冷戰對比 對比 Cold-War-Usa-Vs.html">
+      <span class="num">12</span>
+      <span class="main"><span class="t">冷戰對比：美國視角 </span><span class="en">Cold War — USA Vs</span><span class="d">冷戰對比</span></span>
+      <span class="cat">對比</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/French-Vs-Russian-Revolution.html" data-cat="對比" data-search="法國大革命 vs 俄國革命 French Vs Russian Revolution 革命對比 對比 French-Vs-Russian-Revolution.html">
+      <span class="num">13</span>
+      <span class="main"><span class="t">法國大革命 vs 俄國革命 </span><span class="en">French Vs Russian Revolution</span><span class="d">革命對比</span></span>
+      <span class="cat">對比</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Modernization-Japan-Vs-China.html" data-cat="對比" data-search="近代化對比：日本 vs 中國 Modernization Japan Vs China 近代化對比 對比 Modernization-Japan-Vs-China.html">
+      <span class="num">14</span>
+      <span class="main"><span class="t">近代化對比：日本 vs 中國 </span><span class="en">Modernization Japan Vs China</span><span class="d">近代化對比</span></span>
+      <span class="cat">對比</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Outbreak-Wwi-Vs-Wwii.html" data-cat="對比" data-search="大戰爆發：一次 vs 二次 Outbreak WWI Vs WWII 一戰 vs 二戰 對比 Outbreak-Wwi-Vs-Wwii.html">
+      <span class="num">15</span>
+      <span class="main"><span class="t">大戰爆發：一次 vs 二次 </span><span class="en">Outbreak WWI Vs WWII</span><span class="d">一戰 vs 二戰</span></span>
+      <span class="cat">對比</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Unification-Italy-Vs-Germany.html" data-cat="對比" data-search="統一對比：意大利 vs 德國 Unification Italy Vs Germany 統一對比 對比 Unification-Italy-Vs-Germany.html">
+      <span class="num">16</span>
+      <span class="main"><span class="t">統一對比：意大利 vs 德國 </span><span class="en">Unification Italy Vs Germany</span><span class="d">統一對比</span></span>
+      <span class="cat">對比</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Tokugawa-Fall-Original-Corrected.html" data-cat="日本史" data-search="德川幕府滅亡 — 原稿校正版 Tokugawa Fall — Original Corrected 原稿校正版 日本史 Tokugawa-Fall-Original-Corrected.html">
+      <span class="num">17</span>
+      <span class="main"><span class="t">德川幕府滅亡 — 原稿校正版 </span><span class="en">Tokugawa Fall — Original Corrected</span><span class="d">原稿校正版</span></span>
+      <span class="cat">日本史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/Tokugawa-Fall-Reischauer.html" data-cat="日本史" data-search="德川滅亡 — 賴肖爾觀點 Tokugawa Fall — Reischauer 賴肖爾觀點 日本史 Tokugawa-Fall-Reischauer.html">
+      <span class="num">18</span>
+      <span class="main"><span class="t">德川滅亡 — 賴肖爾觀點 </span><span class="en">Tokugawa Fall — Reischauer</span><span class="d">賴肖爾觀點</span></span>
+      <span class="cat">日本史</span><span class="go">開啟 →</span></a><a class="row" href="https://kong123485-beep.github.io/History/History-Tables.html" data-cat="對比" data-search="歷史對比總表 / 大中華歷史整合 / 綜合歷史分析 History Tables / Greater China History / History 4 總表 · 整合 Web App 對比 History-Tables.html">
+      <span class="num">19</span>
+      <span class="main"><span class="t">歷史對比總表 / 大中華歷史整合 / 綜合歷史分析 </span><span class="en">History Tables / Greater China History / History 4</span><span class="d">總表 · 整合 Web App</span></span>
+      <span class="cat">對比</span><span class="go">開啟 →</span></a></div>
+<p class="foot">Source: kong123485-beep.github.io/History • Branch: main • Deploy: github-pages<br>已新增 chinajapanesewar.html • 已新增 Short-History-Japan-Trilingual.html • 已新增 Short-History-Korea-Trilingual.html</p>
+</main></div></div>
+<script>
+let cur='全部';const q=document.getElementById('q'),rows=[...document.querySelectorAll('.row')];
+function apply(){let n=0;rows.forEach(r=>{let ok=(cur==='全部'||r.dataset.cat===cur)&&r.dataset.search.toLowerCase().includes(q.value.toLowerCase());r.style.display=ok?'grid':'none';if(ok)n++});document.getElementById('count').textContent='共 '+n+' 個檔案 · 全部指去 kong123485-beep.github.io/History/';}
+q.addEventListener('input',apply);
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');cur=b.dataset.filter;apply();});
+</script></body></html>
