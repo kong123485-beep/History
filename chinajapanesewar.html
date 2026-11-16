@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第二次世界大戰日本主要戰役與同期中國重要戰事全覽（中日韓三語對照版）</title>
+  <style>
+    body {
+      font-family: "Noto Sans TC", "Noto Sans JP", "Noto Sans KR", "Microsoft JhengHei", "Yu Gothic", "Malgun Gothic", sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+    header {
+      text-align: center;
+      border-bottom: 2px solid #2c3e50;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .lang-controls {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+    .lang-btn {
+      padding: 6px 14px;
+      border: 1px solid #34495e;
+      background-color: #fff;
+      color: #34495e;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover {
+      background-color: #ecf0f1;
+    }
+    .lang-btn.active {
+      background-color: #34495e;
+      color: #fff;
+    }
+    h1 {
+      color: #1a252f;
+      margin: 0 0 8px 0;
+      font-size: 26px;
+    }
+    .h1-ja, .h1-ko {
+      display: block;
+      font-size: 19px;
+      color: #555;
+      margin-top: 4px;
+    }
+    .subtitle {
+      color: #555;
+      font-size: 15px;
+      margin: 8px 0 0 0;
+    }
+    .sub-block {
+      display: block;
+      margin-top: 2px;
+    }
+    h2 {
+      color: #2c3e50;
+      background-color: #ecf0f1;
+      padding: 12px 16px;
+      border-left: 5px solid #c0392b;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    .ja-sub, .ko-sub {
+      display: block;
+      font-size: 15px;
+      color: #666;
+      font-weight: normal;
+      margin-top: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+    }
+    th, td {
+      border: 1px solid #dce1e5;
+      padding: 12px 15px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #34495e;
+      color: #fff;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9fbfc;
+    }
+    tr:hover {
+      background-color: #f1f4f7;
+    }
+    .battle-zh {
+      font-weight: bold;
+      color: #1a252f;
+      font-size: 16px;
+    }
+    .battle-ja {
+      color: #5d6d7e;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .battle-ko {
+      color: #2874a6;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .desc-zh {
+      margin-bottom: 6px;
+      color: #222;
+    }
+    .desc-ja {
+      margin-bottom: 6px;
+      color: #555;
+      font-size: 14px;
+    }
+    .desc-ko {
+      color: #444;
+      font-size: 14px;
+    }
+
+    /* 語言切換控制樣式 */
+    body.mode-zh .ja-el,
+    body.mode-zh .ko-el {
+      display: none !important;
+    }
+    body.mode-zh .desc-zh {
+      margin-bottom: 0;
+    }
+
+    body.mode-ja .zh-el,
+    body.mode-ja .ko-el {
+      display: none !important;
+    }
+    body.mode-ja .battle-ja {
+      font-weight: bold;
+      color: #1a252f;
+      font-size: 16px;
+      margin-top: 0;
+    }
+    body.mode-ja .desc-ja {
+      color: #222;
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+    body.mode-ja .ja-sub,
+    body.mode-ja .h1-ja {
+      color: inherit;
+      font-weight: bold;
+      font-size: inherit;
+      margin-top: 0;
+    }
+
+    body.mode-ko .zh-el,
+    body.mode-ko .ja-el {
+      display: none !important;
+    }
+    body.mode-ko .battle-ko {
+      font-weight: bold;
+      color: #1a252f;
+      font-size: 16px;
+      margin-top: 0;
+    }
+    body.mode-ko .desc-ko {
+      color: #222;
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+    body.mode-ko .ko-sub,
+    body.mode-ko .h1-ko {
+      color: inherit;
+      font-weight: bold;
+      font-size: inherit;
+      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      th, td {
+        padding: 10px;
+      }
+      .lang-controls {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body class="mode-all">
+
+<div class="container">
+  <div class="lang-controls">
+    <button class="lang-btn active" onclick="setLang('all', this)">中日韓三語</button>
+    <button class="lang-btn" onclick="setLang('zh', this)">僅中文</button>
+    <button class="lang-btn" onclick="setLang('ja', this)">日本語のみ</button>
+    <button class="lang-btn" onclick="setLang('ko', this)">한국어만</button>
+  </div>
+
+  <header>
+    <h1>
+      <span class="zh-el">第二次世界大戰日本主要戰役與同期中國重要戰事全覽 (1931-1949)</span>
+      <span class="ja-el h1-ja">第二次世界大戦 日本の主要戦役および同時代の中国主要戦史一覧 (1931-1949)</span>
+      <span class="ko-el h1-ko">제2차 세계대전 일본의 주요 전역 및 동시대 중국 주요 전사 일람 (1931-1949)</span>
+    </h1>
+    <p class="subtitle">
+      <span class="zh-el sub-block">重大歷史戰役簡介與影響（九一八事變至新中國成立）</span>
+      <span class="ja-el sub-block">重要な歴史的戦役の概要と影響（満州事変から新中国建国まで）</span>
+      <span class="ko-el sub-block">중요한 역사적 전역의 개요와 영향 (만주사변부터 신중국 건국까지)</span>
+    </p>
+  </header>
+
+  <!-- 第一部分：局部抗戰、長征與事變時期 (1931 - 1936) -->
+  <h2>
+    <span class="zh-el">一、 局部抗戰、長征與事變時期 (1931 - 1936)</span>
+    <span class="ja-el ja-sub">一、 局部的な抗戦、長征と事変の時期 (1931 - 1936)</span>
+    <span class="ko-el ko-sub">1. 국부적 항전, 장정 및 사변 시기 (1931 - 1936)</span>
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">
+          <span class="zh-el">戰役與事件名稱</span><span class="zh-el ja-el"> / </span><span class="ja-el">戦役・事件名</span><span class="ja-el ko-el"> / </span><span class="ko-el">전역 및 사건명</span>
+        </th>
+        <th style="width: 70%;">
+          <span class="zh-el">歷史意義與簡介</span><span class="zh-el ja-el"> / </span><span class="ja-el">歴史的意義と概要</span><span class="ja-el ko-el"> / </span><span class="ko-el">역사적 의의 및 개요</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">九一八事變 (1931)</div>
+          <div class="ja-el battle-ja">満州事変 (1931)</div>
+          <div class="ko-el battle-ko">9·18 사변 / 만주사변 (1931)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">日本關東軍炸毀南滿鐵路柳條湖段並誣陷中國軍隊，隨後武力侵占中國東北，揭開日本法西斯侵略序幕。</div>
+          <div class="ja-el desc-ja">関東軍が南満州鉄道の線路を爆破し中国軍の犯行と捏造、その後中国東北部を武力占領し、日本による侵略の幕が開いた。</div>
+          <div class="ko-el desc-ko">일본 관동군이 남만주철도를 폭파한 뒤 중국군의 소행으로 조작하여 중국 동북부를 무력 점령한 사건으로, 일본 침략의 서막을 열었다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">一二八事變 / 淞滬抗戰 (1932)</div>
+          <div class="ja-el battle-ja">第一次上海事変 (1932)</div>
+          <div class="ko-el battle-ko">1·28 사변 / 제1차 상하이 사변 (1932)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">日本海軍陸戰隊在上海挑起戰端，十九路軍奮起抵抗，最終簽署《上海停戰協定》，上海郊區成為非武裝區。</div>
+          <div class="ja-el desc-ja">日本海軍陸戦隊が上海で戦闘を引き起こし、中国第十九路軍が奮戦。のちに「上海停戦協定」が締結された。</div>
+          <div class="ko-el desc-ko">일본 해군육전대가 상하이에서 전투를 일으켜 중국 제19로군이 맞서 싸웠으며, 이후 '상하이 정전협정'이 체결되었다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">長城抗戰 (1933)</div>
+          <div class="ja-el battle-ja">長城作戦 (1933)</div>
+          <div class="ko-el battle-ko">장성 항전 (1933)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">日軍為進攻熱河與華北而發動，中國守軍在喜峰口等地（如大刀隊夜襲）英勇抵抗，但最終戰敗並簽訂《塘沽協定》。</div>
+          <div class="ja-el desc-ja">日本軍の熱河・華北進攻に伴い発生。中国軍は喜峰口などで勇敢に抵抗したが敗北し「塘沽協定」が結ばれた。</div>
+          <div class="ko-el desc-ko">일본군의 열하 및 화북 침공에 맞서 중국군이 희봉구 등지에서 용감히 저항했으나 패배하고 '탕구 협정'이 체결되었다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">二萬五千里長征 (1934-1935)</div>
+          <div class="ja-el battle-ja">万里の長征 (1934-1935)</div>
+          <div class="ko-el battle-ko">대장정 / 2만 5천 리 장정 (1934-1935)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">中國共產黨紅軍為擺脫國民黨軍隊的圍剿而進行的戰略大轉移，為日後發展奠定基石。</div>
+          <div class="ja-el desc-ja">中国共産党の紅軍が国民党軍の包囲網を脱するために行った戦略的大移動で、のちの発展の基盤となった。</div>
+          <div class="ko-el desc-ko">중국공산당 홍군이 국민당군의 포위망을 뚫기 위해 감행한 전략적 대이동으로, 훗날 공산당 발전의 기틀이 되었다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">遵義會議 (1935)</div>
+          <div class="ja-el battle-ja">遵義会議 (1935)</div>
+          <div class="ko-el battle-ko">쭌이 회의 (1935)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">長征途中召開的關鍵會議，事實上確立了毛澤東在黨內和軍內的領導地位，被視為中共黨史上生死攸關的轉折點。</div>
+          <div class="ja-el desc-ja">長征の途中で開かれた重要な会議。事実上毛沢東の党内および軍内での指導権が確立され、中国共産党の歴史における生死を分けた転折点となった。</div>
+          <div class="ko-el desc-ko">대장정 도중 열린 핵심 회의로, 사실상 마오쩌둥의 당내 및 군내 지도권을 확립하며 중국공산당 역사의 중대한 전환점이 되었다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">四渡赤水與巧渡金沙江 (1935)</div>
+          <div class="ja-el battle-ja">四度の赤水河渡河と金沙江の巧みな渡河 (1935)</div>
+          <div class="ko-el battle-ko">사도적수 및 금사강 도하 작전 (1935)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">毛澤東指揮紅軍四渡赤水打亂敵軍部署，隨後巧渡金沙江，徹底擺脫國民黨軍的圍追堵截，是長征中的決定性軍事勝利。</div>
+          <div class="ja-el desc-ja">毛沢東が紅軍を指揮して四度赤水河を渡り敵の部署を攪乱し、続いて巧みに金沙江を渡河して国民党軍の追撃を完全に振り切った、長征における決定的な軍事勝利。</div>
+          <div class="ko-el desc-ko">마오쩌둥의 지휘 아래 츠수이강을 네 번 건너 적을 교란하고 진사강을 기습 도하하여 국민당군의 추격을 완전히 따돌린 대장정의 결정적 승리다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">《義勇軍進行曲》誕生 (1935)</div>
+          <div class="ja-el battle-ja">「義勇軍行進曲」の誕生 (1935)</div>
+          <div class="ko-el battle-ko">《의용군 행진곡》 탄생 (1935)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">由田漢作詞、聶耳作曲，作為電影《風雲兒女》主題曲發表，迅速成為鼓舞全中國軍民抗日救亡的時代精神號角（後成為中華人民共和國國歌）。</div>
+          <div class="ja-el desc-ja">田漢作詞、聶耳作曲により映画『風雲兒女』の主題歌として発表され、全中国の軍民の抗日救国の士気を鼓舞する時代精神の象徴となった（のちの中華人民共和国国歌）。</div>
+          <div class="ko-el desc-ko">톈한 작사, 녜얼 작곡으로 영화 《풍운아녀》의 주제가로 발표되어 전 중국 군민의 항일 구국 의지를 고취한 시대정신의 상징이다 (현 중화인민공화국 국가).</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 第二部分：全面抗戰爆發與戰略防禦 (1937 - 1938) -->
+  <h2>
+    <span class="zh-el">二、 全面抗戰爆發與戰略防禦 (1937 - 1938)</span>
+    <span class="ja-el ja-sub">二、 全面抗戦の勃発と戦略的防御 (1937 - 1938)</span>
+    <span class="ko-el ko-sub">2. 전면 항전 발발과 전략적 방어 (1937 - 1938)</span>
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">
+          <span class="zh-el">戰役名稱</span><span class="zh-el ja-el"> / </span><span class="ja-el">戦役名</span><span class="ja-el ko-el"> / </span><span class="ko-el">전역명</span>
+        </th>
+        <th style="width: 70%;">
+          <span class="zh-el">歷史意義與簡介</span><span class="zh-el ja-el"> / </span><span class="ja-el">歴史的意義と概要</span><span class="ja-el ko-el"> / </span><span class="ko-el">역사적 의의 및 개요</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">盧溝橋事變 (1937)</div>
+          <div class="ja-el battle-ja">盧溝橋事件 (1937)</div>
+          <div class="ko-el battle-ko">루거우차오 사건 / 노구교 사건 (1937)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">標誌著全民族抗戰的爆發，日本開始全面侵華戰爭。</div>
+          <div class="ja-el desc-ja">全民族による抗日戦争の勃発を象徴し、日本による全面的な中国侵攻が始まった。</div>
+          <div class="ko-el desc-ko">중국 전 민족적 항일전쟁의 발발을 알린 사건으로, 일본의 전면적인 중국 침략 전쟁이 시작되었다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">淞滬會戰 (1937)</div>
+          <div class="ja-el battle-ja">第二次上海事変 (1937)</div>
+          <div class="ko-el battle-ko">송후 회전 / 제2차 상하이 사변 (1937)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">中日之間規模最大、最慘烈的會戰之一，徹底粉碎了日本「三個月滅亡中國」的狂妄計畫。</div>
+          <div class="ja-el desc-ja">日中両軍による最大規模かつ最も熾烈な戦いの一つであり、日本の「三ヶ月で中国を滅ぼす」という計画を完全に打ち砕いた。</div>
+          <div class="ko-el desc-ko">중일 양국 간 최대 규모이자 가장 처절했던 회전 중 하나로, 일본의 '3개월 내 중국 멸망' 계획을 완전히 분쇄했다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">太原會戰與平型關大捷 (1937)</div>
+          <div class="ja-el battle-ja">太原作戦・平型関の戦い (1937)</div>
+          <div class="ko-el battle-ko">타이위안 회전 및 핑싱관 대첩 (1937)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">華北戰場規模最大的一次會戰。其中八路軍在平型關取得大捷，打破了日軍「不可戰勝」的神話，但華北最終大片陷落。</div>
+          <div class="ja-el desc-ja">華北戦線で最大規模の会戦。八路軍が平型関の戦いで勝利を収め、日本軍「不敗」の神話を打ち破ったが、華北の領土は最終的に陥落した。</div>
+          <div class="ko-el desc-ko">화북 전선 최대 규모의 회전으로, 팔로군이 핑싱관 전투에서 대승을 거두어 일본군 불패 신화를 깼으나 결국 화북의 광대한 영토가 함락되었다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">南京保衛戰 (1937)</div>
+          <div class="ja-el battle-ja">南京戦 (1937)</div>
+          <div class="ko-el battle-ko">난징 방어전 (1937)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">首都淪陷後發生了駭人聽聞的南京大屠殺，對中國軍民造成極大震撼與創傷。</div>
+          <div class="ja-el desc-ja">首都陥落後に痛ましい南京事件が発生し、中国の軍民に極めて大きな衝撃と傷跡を残した。</div>
+          <div class="ko-el desc-ko">수도 난징이 함락된 후 참혹한 난징 대학살이 발생하여 중국 군민에게 지울 수 없는 큰 충격과 상처를 남겼다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">徐州會戰與德州戰役 (1938)</div>
+          <div class="ja-el battle-ja">徐州会戦および徳州の戦い (1938)</div>
+          <div class="ko-el battle-ko">쉬저우 회전 및 더저우 전투 (1938)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">中國軍隊在台兒莊等地打擊日軍；同時津浦鐵路要地德州等地亦成為日軍南北打通交通線的重要爭奪戰區。</div>
+          <div class="ja-el desc-ja">中国軍が台児荘などで日本軍に打撃を与えた。また、津浦鉄道の要衝である徳州なども日本軍による南北交通網確保のための重要な争奪戦となった。</div>
+          <div class="ko-el desc-ko">중국군이 타이얼좡에서 큰 승리를 거두었으며, 진푸 철도의 요충지인 더저우 일대 역시 남북 교통선을 확보하려는 일본군과 치열한 쟁탈전이 벌어졌다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">武漢會戰 (1938)</div>
+          <div class="ja-el battle-ja">武漢作戦 (1938)</div>
+          <div class="ko-el battle-ko">우한 회전 (1938)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">歷時四個半月的大規模戰略決戰，武漢雖失，但日軍兵力消耗殆盡，抗戰自此進入戰略相持階段。</div>
+          <div class="ja-el desc-ja">4ヶ月半に及ぶ大規模な戦略的決戦となり、武漢は陥落したものの日本軍の兵力も消耗し尽くし、戦争は戦略的膠着段階へと入った。</div>
+          <div class="ko-el desc-ko">4개월 반에 걸친 대규모 전략적 결전으로, 우한은 함락되었으나 일본군의 병력 역시 크게 소모되어 전쟁이 전략적 대치 단계로 접어들었다.</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 第三部分：戰略相持與反覆拉鋸 (1939 - 1943) -->
+  <h2>
+    <span class="zh-el">三、 戰略相持、三光政策與反覆拉鋸 (1939 - 1943)</span>
+    <span class="ja-el ja-sub">三、 戦略的膠着、三光政策と一進一退の攻防 (1939 - 1943)</span>
+    <span class="ko-el ko-sub">3. 전략적 대치, 삼광정책 및 일진일퇴의 공방 (1939 - 1943)</span>
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">
+          <span class="zh-el">戰役與事件名稱</span><span class="zh-el ja-el"> / </span><span class="ja-el">戦役・事件名</span><span class="ja-el ko-el"> / </span><span class="ko-el">전역 및 사건명</span>
+        </th>
+        <th style="width: 70%;">
+          <span class="zh-el">歷史意義與簡介</span><span class="zh-el ja-el"> / </span><span class="ja-el">歴史的意義と概要</span><span class="ja-el ko-el"> / </span><span class="ko-el">역사적 의의 및 개요</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">第一次長沙會戰 (1939)</div>
+          <div class="ja-el battle-ja">第一次長沙作戦 (1939)</div>
+          <div class="ko-el battle-ko">제1차 창사 회전 (1939)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">中國軍隊成功守衛長沙，開創了正面戰場以空間換時間、誘敵深入的成功範例。</div>
+          <div class="ja-el desc-ja">中国軍が長沙の防衛に成功し、正面戦場において空間を以て時間に代え、敵を深く誘い込む戦術の成功例を作った。</div>
+          <div class="ko-el desc-ko">중국군이 창사 방어에 성공하면서, 공간을 내어주고 시간을 버는 유인 섬멸 전술의 대표적 성공 사례를 남겼다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">棗宜會戰 (1940)</div>
+          <div class="ja-el battle-ja">宜昌作戦 (1940)</div>
+          <div class="ko-el battle-ko">짜오이 회전 (1940)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">中國名將張自忠上將在此役中壯烈殉國，為抗戰時期犧牲的最高階將領之一。</div>
+          <div class="ja-el desc-ja">中国の名将・張自忠上将がこの戦いで壮烈な戦死を遂げ、抗日戦争中に戦死した最高位級将官の一人となった。</div>
+          <div class="ko-el desc-ko">중국의 명장 장쯔중 상장이 이 전투에서 장렬히 전사했으며, 항일전쟁 기간 중 순국한 최고위급 장성 중 한 명이다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">百團大戰 (1940)</div>
+          <div class="ja-el battle-ja">百団大戦 (1940)</div>
+          <div class="ko-el battle-ko">백단대전 (1940)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">中國共產黨八路軍在華北發動的大規模破襲戰，沉重打擊了日軍的「囚籠政策」。</div>
+          <div class="ja-el desc-ja">中国共産党の八路軍が華北で発動した大規模な破砕・攻撃作戦であり、日本軍の「囚籠政策」に大きな打撃を与えた。</div>
+          <div class="ko-el desc-ko">중국공산당 팔로군이 화북에서 감행한 대규모 기습 파괴 작전으로, 일본군의 봉쇄 전략('수롱정책')에 큰 타격을 입혔다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">日軍「三光政策」高峰 (1941起)</div>
+          <div class="ja-el battle-ja">日本軍の「三光作戦」の激化 (1941〜)</div>
+          <div class="ko-el battle-ko">일본군의 '삼광정책' 격화 (1941~)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">日軍為應對敵後游擊戰，在華北等地推行「殺光、燒光、搶光」的殘酷政策，對平民與根據地造成毀滅性破壞與嚴重傷亡。</div>
+          <div class="ja-el desc-ja">日本軍が中国の抗日根拠地に対して「殺し尽くし、焼き尽くし、奪い尽くす」という極めて残虐な三光政策を推し進め、住民や地域社会に甚大な被害をもたらした。</div>
+          <div class="ko-el desc-ko">일본군이 후방 유격전에 대응해 화북 일대에서 '다 죽이고, 다 태우고, 다 빼앗는' 잔혹한 초토화 정책을 자행해 민간인에게 막대한 피해를 입혔다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">左權殉國 (1942)</div>
+          <div class="ja-el battle-ja">左権の戦死 (1942)</div>
+          <div class="ko-el battle-ko">쭤취안 순국 (1942)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">八路軍參謀長左權在應對日軍對太行山根據地的大掃蕩時不幸陣亡，是抗戰期間八路軍犧牲的最高指揮員之一。</div>
+          <div class="ja-el desc-ja">八路軍参謀長である左権が日本軍の太行山根拠地に対する大規模な掃討作戦において戦死。抗日戦争中に犠牲となった八路軍の最高幹部の一人。</div>
+          <div class="ko-el desc-ko">팔로군 부참모장 쭤취안이 일본군의 타이항산 근거지 대소탕 작전에 맞서다 전사했으며, 항전 기간 희생된 팔로군 최고위 지휘관 중 한 명이다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">豫湘桂會戰 / 一號作戰 (1944)</div>
+          <div class="ja-el battle-ja">大陸打通作戦 / Ｉ号作戦 (1944)</div>
+          <div class="ko-el battle-ko">예샹구이 회전 / 대륙타통작전 (1944)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">日本為打通中國大陸交通線並摧毀美軍空軍基地而發動的大規模攻勢，中國軍隊損失慘重。</div>
+          <div class="ja-el desc-ja">日本軍が中国大陸の交通網の開通と米軍航空基地の破壊を目的として発動した大規模攻勢であり、中国軍は甚大な被害を受けた。</div>
+          <div class="ko-el desc-ko">일본이 중국 대륙 교통선을 연결하고 미군 공군기지를 파괴하기 위해 발동한 대규모 공세로, 중국군이 막대한 손실을 입었다.</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 第四部分：戰略反攻與抗戰勝利 (1944 - 1945) -->
+  <h2>
+    <span class="zh-el">四、 戰略反攻與抗戰勝利 (1944 - 1945)</span>
+    <span class="ja-el ja-sub">四、 戦略的反攻と抗日戦争の勝利 (1944 - 1945)</span>
+    <span class="ko-el ko-sub">4. 전략적 반공과 항일전쟁 승리 (1944 - 1945)</span>
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">
+          <span class="zh-el">戰役名稱</span><span class="zh-el ja-el"> / </span><span class="ja-el">戦役名</span><span class="ja-el ko-el"> / </span><span class="ko-el">전역명</span>
+        </th>
+        <th style="width: 70%;">
+          <span class="zh-el">歷史意義與簡介</span><span class="zh-el ja-el"> / </span><span class="ja-el">歴史的意義と概要</span><span class="ja-el ko-el"> / </span><span class="ko-el">역사적 의의 및 개요</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">滇西緬北戰役 (1944-1945)</div>
+          <div class="ja-el battle-ja">ビルマ・中国雲南戦線 (1944-1945)</div>
+          <div class="ko-el battle-ko">뎬시·몐베이 전역 / 운남·북부 미얀마 전투 (1944-1945)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">中國遠征軍與盟軍協同作戰，成功打通中印公路（史迪威公路），取得滇西與緬北反攻的勝利。</div>
+          <div class="ja-el desc-ja">中国遠征軍が連合軍と協力し、レルド路（中国インド公路）の開通に成功、ビルマ北部および雲南省西部の反攻を勝利に導いた。</div>
+          <div class="ko-el desc-ko">중국 원정군이 연합군과 공동 작전을 펼쳐 중인 공로(스틸웰 도로)를 개통하고 윈난 서부 및 미얀마 북부 반격전에서 승리했다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">湘西會戰 / 雪峰山會戰 (1945)</div>
+          <div class="ja-el battle-ja">湘西会戦 (1945)</div>
+          <div class="ko-el battle-ko">샹시 회전 / 쉐펑산 전투 (1945)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">中國正面戰場由守轉攻的重要轉折點之一，徹底粉碎日軍企圖奪取芷江空軍基地的企圖。</div>
+          <div class="ja-el desc-ja">中国正面戦場が守勢から攻勢へと転換する重要な転換点の一つであり、芷江航空基地の奪取を狙った日本軍の企図を完全に打ち砕いた。</div>
+          <div class="ko-el desc-ko">중국 정면 전장이 수세에서 공세로 전환된 주요 분기점 중 하나로, 즈장 공군기지를 점령하려던 일본군의 기도를 완전히 분쇄했다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">抗日戰爭勝利 (1945)</div>
+          <div class="ja-el battle-ja">日本降伏・抗日戦争勝利 (1945)</div>
+          <div class="ko-el battle-ko">항일전쟁 승리 / 일본 항복 (1945)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">隨著日本原子彈轟炸與蘇聯參戰，日本天皇於1945年8月宣布無條件投降，中國歷時八年的全面抗戰宣告勝利。</div>
+          <div class="ja-el desc-ja">原子爆弾の投下とソ連の参戦を受け、1945年8月に日本天皇が無条件降伏を布告し、8年に及ぶ日中戦争が終結した。</div>
+          <div class="ko-el desc-ko">원자폭탄 투하와 소련의 참전으로 1945년 8월 일왕이 무조건 항복을 선언하면서 8년에 걸친 중국의 전면 항전이 승리로 막을 내렸다.</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 第五部分：國共內戰與歷史轉折 (1945 - 1949) -->
+  <h2>
+    <span class="zh-el">五、 國共內戰與歷史轉折 (1945 - 1949)</span>
+    <span class="ja-el ja-sub">五、 国共内戦と歴史的転換 (1945 - 1949)</span>
+    <span class="ko-el ko-sub">5. 국공내전과 역사적 전환 (1945 - 1949)</span>
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">
+          <span class="zh-el">事件與戰役名稱</span><span class="zh-el ja-el"> / </span><span class="ja-el">事件・戦役名</span><span class="ja-el ko-el"> / </span><span class="ko-el">사건 및 전역명</span>
+        </th>
+        <th style="width: 70%;">
+          <span class="zh-el">歷史意義與簡介</span><span class="zh-el ja-el"> / </span><span class="ja-el">歴史的意義と概要</span><span class="ja-el ko-el"> / </span><span class="ko-el">역사적 의의 및 개요</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">重慶談判與雙十協定 (1945)</div>
+          <div class="ja-el battle-ja">重慶会談と双十協定 (1945)</div>
+          <div class="ko-el battle-ko">충칭 회담과 쌍십협정 (1945)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">抗戰勝利後，毛澤東親赴重慶與蔣介石進行和平談判，簽署《雙十協定》，但和平方案最終未能阻止全國內戰的爆發。</div>
+          <div class="ja-el desc-ja">抗日戦争勝利後、毛沢東が重慶を訪れ蔣介石と和平会談を行い「双十協定」が調印されたが、全国内戦の勃発を防ぐことはできなかった。</div>
+          <div class="ko-el desc-ko">항전 승리 후 마오쩌둥이 충칭을 방문해 장제스와 평화 회담을 갖고 '쌍십협정'을 체결했으나, 끝내 전면적인 내전 발발을 막지는 못했다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">全面內戰爆發與中原突圍 (1946)</div>
+          <div class="ja-el battle-ja">全国内戦の勃発と中原突囲 (1946)</div>
+          <div class="ko-el battle-ko">전면 내전 발발과 중원돌위 (1946)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">國民黨軍隊進攻中原解放區，標誌著國共全面內戰正式爆發；中共成功突圍，揭開戰略防禦的序幕。</div>
+          <div class="ja-el desc-ja">国民党軍が中原解放区へ進攻し、国共内戦が本格的に勃発。中国共産党軍は包囲を突破し、戦略的防御の幕を開いた。</div>
+          <div class="ko-el desc-ko">국민당군이 중원 해방구를 공격하며 국공내전이 전면 발발했고, 공산당군이 포위망을 돌파하면서 전략적 방어의 서막이 올랐다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">三大戰役 (遼沈、淮海、平津) (1948-1949)</div>
+          <div class="ja-el battle-ja">三大戦役 (遼沈・淮海・平津) (1948-1949)</div>
+          <div class="ko-el battle-ko">3대 전역 (랴오선·화이하이·핑진) (1948-1949)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">國共內戰中決定性的三大戰役，中國人民解放軍消滅了國民黨軍隊的主力，基本奠定了解放全中國的勝局。</div>
+          <div class="ja-el desc-ja">国共内戦における決定的な三大戦役。中国人民解放軍が国民党軍の主力部隊を壊滅させ、全国勝利の基盤をほぼ確実なものとした。</div>
+          <div class="ko-el desc-ko">국공내전의 향방을 결정지은 3대 전역으로, 중국인민해방군이 국민당군 주력 부대를 섬멸하며 중국 전역 승리의 기틀을 확고히 했다.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="zh-el battle-zh">渡江戰役與中華人民共和國成立 (1949)</div>
+          <div class="ja-el battle-ja">渡江戦役と中華人民共和国の成立 (1949)</div>
+          <div class="ko-el battle-ko">도강 전역과 중화인민공화국 수립 (1949)</div>
+        </td>
+        <td>
+          <div class="zh-el desc-zh">解放軍突破長江防線攻佔首都南京，國民黨政府退守台灣；同年10月1日毛澤東在北京宣告中華人民共和國成立。</div>
+          <div class="ja-el desc-ja">解放軍が長江防衛線を突破して首都南京を占領し、国民党政府は台湾へ撤退。同年10月1日に毛沢東が北京で中華人民共和国の成立を宣言した。</div>
+          <div class="ko-el desc-ko">해방군이 창장 방어선을 돌파해 수도 난징을 점령하자 국민당 정부는 대만으로 철수했고, 같은 해 10월 1일 마오쩌둥이 베이징에서 중화인민공화국 수립을 선포했다.</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+  function setLang(mode, btn) {
+    // 移除所有按鈕的 active 樣式
+    const buttons = document.querySelectorAll('.lang-btn');
+    buttons.forEach(b => b.classList.remove('active'));
+    
+    // 為點擊的按鈕加上 active 樣式
+    btn.classList.add('active');
+
+    // 切換 body 的 class
+    const body = document.body;
+    body.classList.remove('mode-all', 'mode-zh', 'mode-ja', 'mode-ko');
+    body.classList.add('mode-' + mode);
+  }
+</script>
+
+</body>
+</html>
