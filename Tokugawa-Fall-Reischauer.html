@@ -47,12 +47,26 @@ footer{margin-top:64px;padding-top:32px;border-top:1px solid #1a1a18;display:gri
 footer .t{color:#1a1a18;font-weight:500;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
 .tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;padding:6px 12px;letter-spacing:.18em;text-transform:uppercase}
 @media(max-width:640px){h1{font-size:36px}h2.sub{font-size:20px}.question-inner{padding:32px 20px 28px}footer{grid-template-columns:1fr}}
+
+.lang-switch{position:sticky;top:44px;z-index:20;background:var(--bg);padding:12px 0;display:flex;gap:8px}
+.lang-switch button{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:8px 16px;border:1px solid #1a1a18;background:#fff;cursor:pointer}
+.lang-switch button.active{background:#1a1a18;color:#fff}
+.lang{display:none}.lang.active{display:block}
+.trans-note{margin:24px 0 0;background:#faf8f3;border:1px solid var(--line);padding:20px 24px}
+.trans-note h3{font-family:"Instrument Serif",Georgia,serif;font-size:20px;font-weight:400;margin:0 0 8px}
+.trans-note p{margin:0;text-align:justify;font-size:13px;line-height:1.7;color:#3a3936}
 </style>
 </head>
 <body>
 <div class="top"><div class="top-inner"><span><span class="dot"></span>HISTORY REPO / JPN-301</span><span>Model Essay</span></div></div>
 <main>
-<header>
+<div class="lang-switch" id="langSwitch">
+<button data-lang="en" class="active">English</button>
+<button data-lang="zh">中文譯本</button>
+<button data-lang="ja">日本語訳</button>
+</div>
+
+<div class="lang active" id="lang-en"><header>
 <div class="kicker">University History • Bakumatsu Period</div>
 <h1>The Fall of <em>Tokugawa Shogunate</em></h1>
 <h2 class="sub">Re-examining Reischauer's Thesis</h2>
@@ -89,9 +103,86 @@ footer .t{color:#1a1a18;font-weight:500;letter-spacing:.15em;text-transform:uppe
 
 <div class="endline"><span>End of Essay — 1,547 Words</span><span><b>BIBLIO: Totman, Jansen, Beasley, Hall, Ravina</b></span></div>
 <div class="footnotes"><div>[1] C. Totman, "Tokugawa Bakufu finances and the Meiji Restoration," JJS 6.1 (1980).</div><div>[2] H. Bolitho, "The Tempo Crisis," in Jansen ed., <em>The Nineteenth Century</em> (Cambridge, 1989).</div><div>[3] W.G. Beasley, monetary data from Yokohama trade reports, 1859-63, cited in pp.112-118.</div></div>
-</article>
+</article></div>
 
+
+<div class="lang" id="lang-zh">
+<header>
+<div class="kicker">大學歷史 • 幕末時期</div>
+<h1>德川幕府的覆亡 —— 重審賴肖爾的論點</h1>
+<h2 class="sub">Re-examining Reischauer's Thesis</h2>
+<div class="meta"><span class="dark">HIST 2320 • 期末論文</span><span>字數：1,547</span></div>
+</header>
+<section class="question"><div class="question-label">考試題目</div><div class="question-inner"><blockquote>「賴肖爾（Edwin O. Reischauer）認為，德川幕府的崩潰主要是由於西方帝國主義的外來衝擊，而非內部衰敗。此論點有多大說服力？請以幕末時期（1853–1868）為例討論。」</blockquote><div class="src">— 出處：Reischauer, E.O.《Japan: The Story of a Nation》（1970），第 8 章。另參 Jansen、Beasley、Totman。</div></div></section>
+<article class="essay">
+<div class="section"><div class="sec-head"><span class="roman">一</span><hr><h2>引言 —— 界定制度</h2></div>
+<p class="dropcap">德川幕府在表面穩定 265 年之後，為何在培里來航至明治維新之間的短短十五年內崩潰，至今仍是幕末史學的核心問題。賴肖爾的經典說法是：幕府是一個基本健全的「中央集權封建制」（幕藩體制），被前所未有的外來衝擊擊碎。這個說法很有直觀說服力。本文認為，賴肖爾的論點只部分成立：它正確地指出西方帶來的「時機」與「正統性危機」，卻誤判了「成因」。借用 Totman 的內部衰敗論與 Hall 的匯合論，我認為幕藩體制在 1830 年代已經是一部失靈的機器；西方帝國主義只是加速並使崩潰正當化的力量，而非首要推動者。</p>
+<p>所謂幕藩體制，是指幕府控制約四分之一土地、260 個半自治藩，以參勤交代人質居留、儒家身份等級（士農工商）及米稅（年貢）財政抽取維繫的雙重政體。賴肖爾在 1970 年寫給渴望看到日本是「現代」國家、卻被打斷的美國讀者，強調其行政精密。然而正如 Totman 在《The Collapse of the Tokugawa Bakufu, 1862–1868》（1980）所證明：精密不等於有償付能力。</p></div>
+<div class="section"><div class="sec-head"><span class="roman">二</span><hr><h2>賴肖爾看似成立的原因：穩定的幻象</h2></div>
+<p>賴肖爾的吸引力建立在兩個可觀察的事實上。第一，直至 1853 年，幕府渡過了每一次危機——1651 年慶安事件、1780 年代天明饑饉、1830 年代天保危機——而無須結構改革。它的官僚體系，正如 Totman 本人也承認，是「早期近代世界最識字、行政能力最強的體系之一」。第二，年表似乎證明外來觸發：神奈川條約（1854）、安政條約（1858）、尊王攘夷恐怖，然後在十年內幕府被廢除。</p>
+<p>對 Harris 這類當代觀察者而言，幕府確實像是「不平等條約」的受害者，而非自身債務的受害者。因此賴肖爾的框架優雅地解釋了覆亡為何如此突然，以及為何它表現為尊皇復古，而非農民革命。如果我們停在 1853 年，這個制度看來仍然可行。</p>
+<div class="note"><div class="label">史學註記</div><p>賴肖爾的「現代化理論」視角——日本是被封建主義阻礙的原生現代國家，然後被西方挑戰解放——主導了 1960 年代的美日研究，並服務於冷戰敘事需要。</p></div></div>
+<div class="section"><div class="sec-head"><span class="roman">三</span><hr><h2>賴肖爾錯在哪裏：機器早已失靈</h2></div>
+<p>賴肖爾的缺陷不在事實，而在機制。到 1840 年代，三重互相扣連的失敗已經掏空幕藩體制。</p>
+<p><strong>（甲）財政崩壞。</strong>參勤交代制度要求大名用一半收入維持江戶宅邸與隊伍，造成系統性債務。到 1843 年，幕府本身的財政依賴向大阪商人如三井、鴻池的強制借款（御用金）；幕府債務超過年收入的 70%。同時，長州、薩摩等藩被迫緊縮，反而開創專賣（砂糖、蠟）與財政合理化，諷刺地變得比中央更富有。這不是外來衝擊，而是結構性赤字。</p>
+<p><strong>（乙）武士危機與忠誠轉移。</strong>以米計算的固定俸祿，在貨幣化經濟中令下級武士（下級家臣、足輕）貧困化。到 1840 年，長州足輕的購買力只剩 1700 年的三分之一。這些人成為教師、走私者，以及水戶學、國學的讀者——這些學派把忠誠由將軍轉移到天皇。1860 年代的志士並非對西方作出反應的流離精英，而是 80 年身份與收入脫鈎的產物。當吉田松陰開辦松下村塾時，他教的下級武士，其經濟不滿早已在尋找意識形態歸宿。</p>
+<p><strong>（丙）階級融合與百姓一揆。</strong>賴肖爾筆下穩定的身份秩序已經瓦解。富農（豪農）借錢給武士，商人買武士身份（鄉士），武士務農。更致命的是，百姓一揆在 1800–1853 年間平均每年超過 20 次，培里來航前錄得逾 1,000 宗，是 18 世紀的十倍。幕府自身的天保改革（1841–43）試圖令武士歸農、壓制商人，卻在 18 個月內失敗，因為它想廢除的市場經濟早已是財政基礎。一個無法執行自身復興計劃的制度，並不健全。</p></div>
+<div class="section"><div class="sec-head"><span class="roman">四</span><hr><h2>賴肖爾仍有洞見之處：西方作為加速器</h2></div>
+<p>完全否定賴肖爾，就是犯相反的錯誤。外來壓力沒有造成衰敗，但它決定了崩潰的「形式」與「速度」，有三方面。</p>
+<p><strong>（1）正統性崩潰。</strong>未經朝廷批准、由堀田正睦與井伊直弼簽訂的神奈川條約（1854）與安政條約（1858），粉碎了幕府作為天皇代理人（大君）的意識形態基礎。孝明天皇前所未有的直接干預——1858 年拒絕批准條約、1863 年下令攘夷——給水戶學理論家提供了幕府篡奪皇權的法律證據。尊王攘夷由學術口號變成憲制論據。沒有條約，志士仍只是地方不滿分子；有了條約，他們成為勤王志士。</p>
+<p><strong>（2）軍事與財政重組。</strong>外來危機令西南藩得以用西方支援重新武裝：薩摩 1866 年與長州的同盟，由坂本龍馬用英式（格拉弗）步槍促成；相反，幕府依賴的法國顧問（布魯奈）在 1868 年證明無效。此外，通商口岸帶來災難性貨幣衝擊：日本金銀比價為 1:5，全球為 1:15。數月內，外商輸出 400 萬兩黃金，造成通商口岸 300% 通脹，令幕府銅幣崩潰，並迫使幕府支付賠款——下關炮擊（1864）後 300 萬美元——令中央破產，卻令收取貿易稅的薩長致富。</p>
+<p>因此，西方正如 Beasley 所說，是「財政與意識形態的溶劑」：它令已存在的矛盾貨幣化。</p></div>
+<div class="section"><div class="sec-head"><span class="roman">五</span><hr><h2>結論：失靈的機器</h2></div>
+<p>賴肖爾的機器不是被雷擊中；它是一部失靈的機器，在接觸火花時着火。這個比喻對史學很重要。Totman（1980）正確地強調長期的內部功能失調——財政危機、武士貧困化、逾 1,000 次百姓一揆——卻低估了為何 1868 年而非 1848 年成為終結之年。Jansen（《Sakamoto Ryoma and the Meiji Restoration》，1961）與 Beasley（《The Meiji Restoration》，1972）提供匯合論：內部衰敗造就一群武裝、意識形態上疏離的下級武士與財政穩健的外樣藩；西方危機給了他們（甲）正當化的事業（勤王）、（乙）以新貿易融資的現代武器、（丙）一個無法收買他們的破產幕府。</p>
+<p>因此，賴肖爾的論點在洞見上成立——沒有西方，德川可能像清朝一樣，以分散的財政政權苟延殘喘——但在因果上不成立。幕府覆亡不是因為西方來了；而是因為西方來到時，它已無財政、軍事或意識形態資源回應。1868 年維新不是反西方的革命，而是日本社會內部為爭奪如何回應西方而打的內戰，由德川自身經濟轉型的兩個產物互相廝殺。</p></div>
+<div class="endline"><span>全文完 — 1,547 字</span><span><b>參考：Totman、Jansen、Beasley、Hall、Ravina</b></span></div>
+</article>
+</div>
+
+<div class="lang" id="lang-ja">
+<header>
+<div class="kicker">大学歴史 • 幕末期</div>
+<h1>徳川幕府の崩壊 —— ライシャワー説の再検討</h1>
+<h2 class="sub">Re-examining Reischauer's Thesis</h2>
+<div class="meta"><span class="dark">HIST 2320 • 期末論文</span><span>字数：1,547</span></div>
+</header>
+<section class="question"><div class="question-label">試験問題</div><div class="question-inner"><blockquote>「エドウィン・O・ライシャワーは、徳川幕府の崩壊は主に西方帝国主義による外的衝撃によるものであり、内部の衰退によるものではないと主張する。この説はどの程度妥当か。幕末期（1853–1868）を参照して論じなさい。」</blockquote><div class="src">— 出典：Reischauer, E.O.『Japan: The Story of a Nation』（1970）、第8章。Jansen、Beasley、Totman 参照。</div></div></section>
+<article class="essay">
+<div class="section"><div class="sec-head"><span class="roman">一</span><hr><h2>序論 —— 制度の定義</h2></div>
+<p class="dropcap">なぜ徳川幕府は、265年間にわたる見かけの安定の後、ペリー来航から明治維新までのわずか15年足らずで崩壊したのか。この問いは今なお幕末史学の中心的問題である。ライシャワーの古典的定式——幕府は基本的に健全な「中央集権的封建制」（幕藩体制）であり、前例のない外的衝撃によって粉砕された——は直観的な説得力を持ち続ける。本稿では、しかし、ライシャワーの説は部分的にのみ妥当であると主張する。それは西洋がもたらした「時期」と「正統性の危機」を正しく捉えているが、「原因」を誤診している。トットマンの内部崩壊説とホールの接合説に基づき、幕藩体制は1830年代までにすでに故障した機械であったこと、西洋帝国主義は崩壊の加速装置であり正当化装置であって、主因ではなかったことを論じる。</p>
+<p>幕藩体制とは、幕府が国土の約4分の1を支配し、260の半自律的な藩が、参勤交代による人質居住、儒教的身分秩序（士農工商）、米税（年貢）による財政抽出によって結ばれた二重政体を指す。1970年に、「近代」国家としての中断を経験した日本を見たいと願うアメリカの読者に向けて書いたライシャワーは、その行政的精緻さを強調した。しかしトットマンが『The Collapse of the Tokugawa Bakufu, 1862–1868』（1980）で示したように、精緻さは支払能力を意味しない。</p></div>
+<div class="section"><div class="sec-head"><span class="roman">二</span><hr><h2>ライシャワーが妥当に見える理由：安定の幻想</h2></div>
+<p>ライシャワーの魅力は、観察可能な二つの事実に依拠する。第一に、1853年まで、幕府はあらゆる危機——1651年の慶安事件、1780年代の天明の飢饉、1830年代の天保の危機——を構造改革なしに生き延びた。その官僚制は、トットマン自身も認めるように、「近世世界で最も識字率が高く、行政能力の高いものの一つ」であった。第二に、年表は外的契機を裏付けるように見える。神奈川条約（1854）、安政条約（1858）、尊王攘夷のテロ、そして十年以内に幕府の廃止である。</p>
+<p>タウンゼント・ハリスのような当時の観察者にとって、幕府は確かに自らの債務ではなく不平等条約の犠牲者に見えた。したがってライシャワーの枠組みは、崩壊がなぜこれほど突然であったのか、なぜそれが農民革命ではなく尊皇復古の形を取ったのかを優雅に説明する。1853年で止まれば、この制度は存続可能に見える。</p>
+<div class="note"><div class="label">史学ノート</div><p>ライシャワーの「近代化理論」のレンズ——封建制に阻まれた原近代国家としての日本が、西洋の挑戦によって解放される——は1960年代の米国日本研究を支配し、冷戦の物語の要請に応えた。</p></div></div>
+<div class="section"><div class="sec-head"><span class="roman">三</span><hr><h2>ライシャワーが誤っている理由：機械はすでに故障していた</h2></div>
+<p>ライシャワーの欠陥は事実ではなく、仕組みにある。1840年代までに、三つの相互に絡み合う失敗が幕藩体制を空洞化していた。</p>
+<p><strong>（a）財政の破綻。</strong>参勤交代制は、大名に収入の半分を江戸屋敷と行列の維持に費やすことを要求し、構造的債務を生んだ。1843年までに、幕府自体の財政は三井・鴻池のような大坂商人からの強制借入（御用金）に依存し、幕府債務は年収の70％を超えた。同時に、長州・薩摩のような藩は緊縮を強いられ、専売（砂糖・蝋）や財政合理化を開拓し、皮肉にも中央より豊かになった。これは外的衝撃ではなく、構造的赤字である。</p>
+<p><strong>（b）武士の危機と忠誠の転移。</strong>米で支払われる固定俸給は、貨幣化する経済の中で下級武士（下級家臣・足軽）を貧困化させた。1840年までに、長州の足軽の購買力は1700年の3分の1に落ちた。これらの人々は教師・密輸業者となり、水戸学・国学の読者となった。これらの学派は忠誠を将軍から天皇へ移し替えた。1860年代の志士は、西洋に反応した没落エリートではなく、80年間にわたる身分と収入の乖離の産物であった。吉田松陰が松下村塾を開いたとき、彼が教えた下級武士の経済的不満は、すでにイデオロギー的な居場所を求めていた。</p>
+<p><strong>（c）階級融合と百姓一揆。</strong>ライシャワーの描く安定した身分秩序は崩壊していた。豪農は武士に金を貸し、商人は武士の身分（郷士）を買い、武士は農耕した。さらに決定的なのは、百姓一揆が1800–1853年に年平均20件以上、ペリー来航までに1,000件以上記録され、18世紀の10倍に達したことである。幕府自らの天保改革（1841–43）は、武士を土地に戻し商人を抑圧しようとしたが、18か月以内に失敗した。なぜなら、廃止しようとした市場経済こそがすでに財政基盤であったからである。自らの復興計画を実行できない制度は健全ではない。</p></div>
+<div class="section"><div class="sec-head"><span class="roman">四</span><hr><h2>ライシャワーがなお洞察に富む理由：西洋を加速装置として</h2></div>
+<p>ライシャワーを完全に退けることは、逆の誤りを犯すことになる。外的圧力は衰退を生まなかったが、崩壊の「形態」と「速度」を三つの点で決定した。</p>
+<p><strong>（1）正統性の崩壊。</strong>朝廷の勅許なしに堀田正睦と井伊直弼が結んだ神奈川条約（1854）と安政条約（1858）は、天皇の代理人（大君）としての幕府のイデオロギー的基盤を粉砕した。孝明天皇の前例のない直接介入——1858年の条約批准拒否と1863年の攘夷命令——は、水戸学の理論家に、幕府が皇権を簒奪したという法的証拠を与えた。尊王攘夷は学術的スローガンから憲制的論拠へ転化した。条約がなければ、志士は地方の不満分子にとどまった。条約があってこそ、彼らは勤王の志士となった。</p>
+<p><strong>（2）軍事と財政の再編。</strong>外的危機により、西南雄藩は西洋の支援で再武装できた。薩摩の1866年の長州との同盟は、坂本龍馬が英国製（グラバー）小銃を用いて仲介した。一方、幕府はフランス人顧問（ブリュネ）に頼ったが、1868年に無効であることが証明された。さらに、開港場は壊滅的な貨幣ショックをもたらした。日本の金銀比価は1:5、世界は1:15であった。数か月以内に、外国商人は400万両の金を輸出し、開港場で300％のインフレを引き起こし、幕府の銅貨を崩壊させ、賠償金を強制した——下関砲撃（1864）後の300万ドル——は中央を破産させたが、貿易税を徴収した薩長を富ませた。</p>
+<p>したがって西洋は、ビーズリーが呼ぶ「財政的・イデオロギー的溶剤」として作用した。すでに存在する矛盾を貨幣化したのである。</p></div>
+<div class="section"><div class="sec-head"><span class="roman">五</span><hr><h2>結論：故障した機械</h2></div>
+<p>ライシャワーの機械は雷に打たれたのではない。それは故障した機械が、火花に触れて発火したのである。この比喩は史学にとって重要である。トットマン（1980）は長期的な内部機能不全——財政危機、武士の貧困化、1,000件を超える百姓一揆——を正しく強調したが、なぜ1868年が、1848年ではなく終末の年となったのかを過小評価した。ジャンセン（『Sakamoto Ryoma and the Meiji Restoration』、1961）とビーズリー（『The Meiji Restoration』、1972）が接合説を与える。内部の衰退は、武装し、イデオロギー的に疎外された下級武士と、支払能力のある外様藩の集団を生んだ。西洋の危機は彼らに（a）正当化する大義（勤王）、（b）新たな貿易で賄われる近代兵器、（c）彼らを買収できない破産した幕府を与えた。</p>
+<p>したがって、ライシャワーの説は洞察においては妥当である——西洋がなければ、徳川は清朝のような分散的財政体制として延命したかもしれない——が、因果関係においては誤っている。幕府は西洋が来たから滅びたのではない。西洋が来たとき、応答するための財政・軍事・イデオロギー的資源が残っていなかったから滅びたのである。1868年の維新は反西洋の革命ではなく、西洋にどう答えるかをめぐって日本社会内部で争われた内戦であり、徳川自身の経済転換の二つの産物の間の戦いであった。</p></div>
+<div class="endline"><span>本文終 — 1,547 語</span><span><b>参考文献：Totman、Jansen、Beasley、Hall、Ravina</b></span></div>
+</article>
+</div>
 <footer><div><div class="t">Citation — Model Essay Use</div><p>For revision purposes only. Do not submit verbatim. Synthesize thesis structure: definition → apparent validity → internal failure mechanisms (fiscal/samurai/peasant) → external accelerator (legitimacy/military/monetary) → historiographical synthesis. Reference Totman 1980, Jansen 1961, Beasley 1972.</p></div><div><span class="tag"><span class="dot"></span>Japan 1853-1868 • Bakumatsu</span><p style="margin-top:12px">Typeset in Instrument Serif + IBM Plex Serif • Max-width 850px • Essay body justified</p></div></footer>
 </main>
+<script>
+document.querySelectorAll('#langSwitch button').forEach(b=>{
+ b.addEventListener('click',()=>{
+  document.querySelectorAll('#langSwitch button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.lang').forEach(x=>x.classList.remove('active'));
+  document.getElementById('lang-'+b.dataset.lang).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+ });
+});
+</script>
 </body>
 </html>
