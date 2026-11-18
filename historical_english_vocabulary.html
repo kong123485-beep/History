@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歷史書英文生字與動詞辨析表 (Historical English Vocabulary)</title>
+    <style>
+        :root {
+            --primary-color: #2b3a4a;
+            --accent-color: #8b5a2b;
+            --bg-color: #f4f1ea;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #dcd6c8;
+            --highlight-bg: #f9f6f0;
+        }
+        body {
+            font-family: "Microsoft JhengHei", "PingFang HK", "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.8em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--highlight-bg);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .search-box {
+            flex: 1;
+            min-width: 220px;
+            padding: 10px 14px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #1d2833;
+        }
+        button.active {
+            background-color: var(--accent-color);
+        }
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .toc a {
+            text-decoration: none;
+            color: var(--primary-color);
+            background-color: #eef2f5;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .toc a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        h2 {
+            color: var(--primary-color);
+            background-color: #eef2f5;
+            padding: 10px 16px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 4px;
+            margin-top: 35px;
+            font-size: 1.25em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            margin-bottom: 25px;
+        }
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+        th {
+            background-color: #f7f9fa;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #fcfbf8;
+        }
+        .word {
+            font-weight: bold;
+            color: #1a252f;
+            font-size: 1.05em;
+        }
+        .pos {
+            color: #777;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+        .meaning {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        .example {
+            color: #555;
+            font-size: 0.92em;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        .hidden-meaning {
+            color: transparent !important;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            user-select: none;
+            cursor: pointer;
+        }
+        .hidden-meaning:hover {
+            background-color: #cbd5e1;
+        }
+        .no-results {
+            text-align: center;
+            color: #888;
+            padding: 30px;
+            display: none;
+            font-size: 1.1em;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 20px 15px;
+            }
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>歷史書英文生字與動詞辨析表</h1>
+    <p class="subtitle">Historical English Vocabulary & Verb Distinctions</p>
+
+    <div class="controls">
+        <input type="text" id="searchInput" class="search-box" placeholder="搜尋英文生字、中文解釋或例句...">
+        <div class="btn-group">
+            <button id="toggleMeaningBtn" onclick="toggleMeanings()">隱藏中文解釋 (背誦模式)</button>
+            <button onclick="resetFilters()">重設</button>
+        </div>
+    </div>
+
+    <div class="toc">
+        <a href="#sec1">1. 時代與時間劃分</a>
+        <a href="#sec2">2. 政治制度與統治</a>
+        <a href="#sec3">3. 衝突、戰爭與革命</a>
+        <a href="#sec4">4. 經濟、社會與宗教</a>
+        <a href="#sec5">5. 史學研究常用詞彙</a>
+        <a href="#sec6">6. 統治與外交高頻動詞</a>
+        <a href="#sec7">7. 易混淆動詞辨析</a>
+    </div>
+
+    <div id="noResults" class="no-results">找不到符合的生字，請嘗試其他關鍵字。</div>
+
+    <!-- Section 1 -->
+    <div class="vocab-section" id="sec1">
+        <h2>1. 時代與時間劃分 (Eras & Time Periods)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">英文生字</th>
+                    <th style="width: 25%;">中文解釋</th>
+                    <th style="width: 50%;">核心概念與語境</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="word">Antiquity</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">上古時代</span></td>
+                    <td>通常指中世紀之前的古代歷史，特別是古希臘與古羅馬時期。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Medieval / Middle Ages</span> <span class="pos">(adj./n.)</span></td>
+                    <td><span class="meaning">中世紀的 / 中世紀</span></td>
+                    <td>指公元5世紀至15世紀之間的歐洲歷史時期。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Renaissance</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">文藝復興</span></td>
+                    <td>指14至17世紀歐洲文化、藝術與科學蓬勃發展的時期。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Enlightenment</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">啟蒙時代</span></td>
+                    <td>指17至18世紀強調理性與科學的歐洲思想運動。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Contemporary</span> <span class="pos">(adj.)</span></td>
+                    <td><span class="meaning">當代的、同時代的</span></td>
+                    <td>指現代，或與某個特定歷史事件處於同一時期的。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Chronology</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">年代學、時間順序</span></td>
+                    <td>指按時間先後排列歷史事件的方法。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="vocab-section" id="sec2">
+        <h2>2. 政治制度與統治 (Political Systems & Governance)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">英文生字</th>
+                    <th style="width: 25%;">中文解釋</th>
+                    <th style="width: 50%;">核心概念與語境</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="word">Monarchy</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">君主制</span></td>
+                    <td>由國王、女王或皇帝統治的政治制度。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Dynasty</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">朝代、王朝</span></td>
+                    <td>由同一家族世代相傳統治的時期。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Empire</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">帝國</span></td>
+                    <td>由一個最高統治者或核心國家控制大片領土與多個民族的政體。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Feudalism</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">封建制度</span></td>
+                    <td>中世紀歐洲與亞洲常見的社會制度，領主將土地分封給附庸以換取效忠。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Sovereignty</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">主權</span></td>
+                    <td>國家獨立自主、不受外來干涉的最高權力。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Aristocracy</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">貴族階級</span></td>
+                    <td>擁有世襲爵位、特權與大量土地的社會上層階級。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="vocab-section" id="sec3">
+        <h2>3. 衝突、戰爭與革命 (Conflicts, Wars & Revolutions)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">英文生字</th>
+                    <th style="width: 25%;">中文解釋</th>
+                    <th style="width: 50%;">核心概念與語境</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="word">Revolution</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">革命</span></td>
+                    <td>透過劇烈變革或武裝起義推翻舊有政權與社會制度。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Rebellion / Uprising</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">叛亂 / 起義</span></td>
+                    <td>民眾或團體對抗現有政府或統治者的武裝反抗。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Civil War</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">內戰</span></td>
+                    <td>同一國家內部不同派系或地區之間爆發的戰爭。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Coup d'état</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">政變</span></td>
+                    <td>通常由軍方或政治菁英發動的突然且非法的奪權行動。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Siege</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">圍城戰</span></td>
+                    <td>軍隊包圍城市或堡壘，切斷補給以迫使對方投降的戰術。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Treaty</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">條約</span></td>
+                    <td>國家之間為了結束戰爭、劃定邊界或建立同盟而簽署的正式協議。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="vocab-section" id="sec4">
+        <h2>4. 經濟、社會與宗教 (Economy, Society & Religion)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">英文生字</th>
+                    <th style="width: 25%;">中文解釋</th>
+                    <th style="width: 50%;">核心概念與語境</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="word">Colonialism</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">殖民主義</span></td>
+                    <td>強國佔領並控制其他地區，進行經濟剝削與政治統治的政策。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Imperialism</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">帝國主義</span></td>
+                    <td>國家透過軍事或經濟力量向海外擴張勢力範圍的政策。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Industrialization</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">工業化</span></td>
+                    <td>社會從農業經濟轉型為以機器製造業為主的過程。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Reformation</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">宗教改革</span></td>
+                    <td>16世紀歐洲基督教內部的分裂與改革運動，促成了新教的誕生。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Peasant</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">農民</span></td>
+                    <td>在農業社會中從事耕作的基層勞動者，通常社會地位較低。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Ideology</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">意識形態</span></td>
+                    <td>指導政治、經濟或社會行動的一套系統性思想與信念。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="vocab-section" id="sec5">
+        <h2>5. 史學研究常用詞彙 (Historiography & Research)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">英文生字</th>
+                    <th style="width: 25%;">中文解釋</th>
+                    <th style="width: 50%;">核心概念與語境</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="word">Primary source</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">第一手史料</span></td>
+                    <td>事件發生當時留下的原始文件、日記、文物或目擊者記錄。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Secondary source</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">第二手史料</span></td>
+                    <td>後代歷史學家根據第一手史料分析與撰寫的書籍或論文。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Artifact</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">歷史文物</span></td>
+                    <td>由人類製造並具有歷史或文化價值的古代物品。</td>
+                </tr>
+                <tr>
+                    <td><span class="word">Archive</span> <span class="pos">(n.)</span></td>
+                    <td><span class="meaning">檔案館、歷史檔案</span></td>
+                    <td>保存重要歷史文件與記錄的機構或資料集合。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="vocab-section" id="sec6">
+        <h2>6. 統治、外交與歷史轉折動詞 (Governance, Diplomacy & Shifts)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">英文動詞 / 片語</th>
+                    <th style="width: 25%;">中文解釋</th>
+                    <th style="width: 50%;">用法與歷史例句</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="word">Ascend the throne</span> <span class="pos">(phr.)</span></td>
+                    <td><span class="meaning">登基、繼位</span></td>
+                    <td>指君主正式成為國家最高統治者。<div class="example">Queen Elizabeth II ascended the throne in 1952.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Consolidate power</span> <span class="pos">(phr.)</span></td>
+                    <td><span class="meaning">鞏固權力</span></td>
+                    <td>指統治者消除反對勢力並加強對國家的控制。<div class="example">The new emperor quickly consolidated power after the civil war.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Suppress / Crush</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">鎮壓（叛亂）</span></td>
+                    <td>指統治者使用武力平息反抗運動。<div class="example">The army was sent to crush the peasant uprising.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Break out</span> <span class="pos">(phr. v.)</span></td>
+                    <td><span class="meaning">爆發</span></td>
+                    <td>專指戰爭、疾病或衝突突然開始，不可用被動語態。<div class="example">World War I broke out in July 1914.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Forge an alliance</span> <span class="pos">(phr.)</span></td>
+                    <td><span class="meaning">建立同盟</span></td>
+                    <td>指國家之間為了共同利益或防禦而正式結盟。<div class="example">The two nations forged an alliance against their common enemy.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Broker a truce</span> <span class="pos">(phr.)</span></td>
+                    <td><span class="meaning">促成停戰 / 斡旋和平</span></td>
+                    <td>指第三方介入調解並達成停火協議。<div class="example">Diplomats worked hard to broker a truce between the warring factions.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Concede defeat</span> <span class="pos">(phr.)</span></td>
+                    <td><span class="meaning">承認戰敗</span></td>
+                    <td>指一方在戰爭或談判中正式認輸。<div class="example">After months of siege, the city finally conceded defeat.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Pave the way for</span> <span class="pos">(phr.)</span></td>
+                    <td><span class="meaning">為……鋪平道路</span></td>
+                    <td>指某事件創造了條件，使後續的重大發展得以發生。<div class="example">The printing press paved the way for the Renaissance.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Usher in</span> <span class="pos">(phr. v.)</span></td>
+                    <td><span class="meaning">開啟、迎來（新時代）</span></td>
+                    <td>指某事件標誌著一個全新歷史階段的開始。<div class="example">The Industrial Revolution ushered in an era of rapid urbanization.</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="vocab-section" id="sec7">
+        <h2>7. 易混淆歷史動詞辨析 (Confusing Historical Verbs)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">英文動詞</th>
+                    <th style="width: 25%;">中文解釋</th>
+                    <th style="width: 50%;">細微差別與例句對比</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="word">Invade</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">入侵、侵略</span></td>
+                    <td>強調<strong>武力跨越邊界進入</strong>的動作，未必代表已經完全控制該地。<div class="example">In September 1939, German troops invaded Poland.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Occupy</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">佔領</span></td>
+                    <td>強調入侵後<strong>駐軍並實際控制</strong>，通常帶有「暫時性」或軍事管制意味。<div class="example">Foreign forces occupied the country for over five years.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Annex</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">吞併、併吞</span></td>
+                    <td>單方面宣布將他國領土<strong>永久納入</strong>本國版圖，改寫法理主權。<div class="example">The empire formally annexed the neighboring territory.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Colonize</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">殖民</span></td>
+                    <td>派遣本國國民前往他國<strong>定居、建立聚落</strong>，進行長期經濟剝削與統治。<div class="example">European powers colonized vast territories in Africa and Asia.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Overthrow</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">推翻（政權）</span></td>
+                    <td>透過武力、革命或政變，強行摧毀整個政權或政府。<div class="example">The rebels aimed to overthrow the corrupt regime.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Depose</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">廢黜、罷免</span></td>
+                    <td>透過政治手段或宮廷政變剝奪特定君主職位，原有制度可能保留。<div class="example">The nobles conspired to depose the young king.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Abdicate</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">退位</span></td>
+                    <td>主詞為君主本人，指其主動或被迫自行交出王位。<div class="example">King Edward VIII chose to abdicate in 1936.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Rebel</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">反叛、造反</span></td>
+                    <td>最通用，指民眾、地方諸侯或團體公開武裝對抗現有政府。<div class="example">The northern provinces rebelled against heavy taxes.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Revolt</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">起義、暴動</span></td>
+                    <td>強調<strong>大規模、突發性且帶有強烈憤怒情緒</strong>的平民群眾反抗。<div class="example">The starving peasants revolted against the feudal lords.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Mutiny</span> <span class="pos">(v./n.)</span></td>
+                    <td><span class="meaning">兵變、叛變</span></td>
+                    <td>專指<strong>軍隊士兵或船員</strong>反抗上級軍官或艦長的命令。<div class="example">The sailors mutinied after months without pay.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Enact</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">頒布、制定（法律）</span></td>
+                    <td>指立法機構正式通過並確立某項法律，使其在紙面上生效。<div class="example">Congress enacted the Civil Rights Act in 1964.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Enforce</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">執行、強制實施</span></td>
+                    <td>指政府或警察機關透過實際行動確保法律被遵守。<div class="example">Police were ordered to strictly enforce the curfew.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Ratify</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">批准（條約/憲法）</span></td>
+                    <td>指國家最高權力機構（如國會）正式核准已簽署的國際條約。<div class="example">The Senate refused to ratify the peace treaty.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Spark / Trigger</span> <span class="pos">(v.)</span></td>
+                    <td><span class="meaning">引發 / 觸發</span></td>
+                    <td>放在因果鏈的<strong>起點</strong>，指導火線事件直接啟動連鎖反應。<div class="example">The assassination triggered a chain of events leading to war.</div></td>
+                </tr>
+                <tr>
+                    <td><span class="word">Culminate in</span> <span class="pos">(phr. v.)</span></td>
+                    <td><span class="meaning">最終導致、以……告終</span></td>
+                    <td>放在因果鏈的<strong>終點</strong>，指長期累積後達到最高潮或產生最終結果。<div class="example">Years of crisis culminated in the fall of the government.</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    let meaningsHidden = false;
+
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', filterVocab);
+
+    function filterVocab() {
+        const query = searchInput.value.toLowerCase().trim();
+        const sections = document.querySelectorAll('.vocab-section');
+        let totalVisibleRows = 0;
+
+        sections.forEach(section => {
+            const rows = section.querySelectorAll('tbody tr');
+            let sectionVisibleRows = 0;
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    row.style.display = '';
+                    sectionVisibleRows++;
+                    totalVisibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            section.style.display = sectionVisibleRows > 0 ? '' : 'none';
+        });
+
+        document.getElementById('noResults').style.display = totalVisibleRows === 0 ? 'block' : 'none';
+    }
+
+    function toggleMeanings() {
+        meaningsHidden = !meaningsHidden;
+        const btn = document.getElementById('toggleMeaningBtn');
+        const meanings = document.querySelectorAll('.meaning');
+
+        if (meaningsHidden) {
+            btn.textContent = '顯示中文解釋';
+            btn.classList.add('active');
+            meanings.forEach(el => el.classList.add('hidden-meaning'));
+        } else {
+            btn.textContent = '隱藏中文解釋 (背誦模式)';
+            btn.classList.remove('active');
+            meanings.forEach(el => el.classList.remove('hidden-meaning'));
+        }
+    }
+
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('hidden-meaning')) {
+            e.target.classList.remove('hidden-meaning');
+        }
+    });
+
+    function resetFilters() {
+        searchInput.value = '';
+        filterVocab();
+        if (meaningsHidden) {
+            toggleMeanings();
+        }
+    }
+</script>
+
+</body>
+</html>
